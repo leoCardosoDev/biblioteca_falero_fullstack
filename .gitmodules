@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/leoCardosoDev/biblioteca_falero_backend_node_typeorm.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/leoCardosoDev/biblioteca_falero_frontend_react.git
