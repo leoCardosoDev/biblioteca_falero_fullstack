@@ -15,7 +15,7 @@
     - *Why*: User addresses depend on this. Zero dependency.
 2.  **Task 018**: Shared Kernel - City (DB + Seed) [DONE]
     - *Why*: Depends on State.
-3.  **Task 019**: Shared Kernel - Neighborhood (On-Demand)
+3.  **Task 019**: Shared Kernel - Neighborhood (On-Demand) [DONE]
     - *Why*: Completes the Geography triad.
 4.  **Task 007**: Backend Refactor - Domain Core (User & Address)
     - *Why*: Implements the `Address` VO using the Geography tables above. Defines the new `User` structure.
@@ -69,8 +69,8 @@
 | Order | Task ID | Description | Type |
 | :--- | :--- | :--- | :--- |
 | **1** | `017` | Geography: State [DONE] | 🧱 Infra |
-| **2** | `018` | Geography: City | 🧱 Infra |
-| **3** | `019` | Geography: Neighborhood | 🧱 Infra |
+| **2** | `018` | Geography: City [DONE] | 🧱 Infra |
+| **3** | `019` | Geography: Neighborhood [DONE] | 🧱 Infra |
 | **4** | `007` | Domain: User & Address | 🧠 Domain |
 | **5** | `020` | Gov: Timestamps | 🛡️ Arch |
 | **6** | `021` | Gov: Soft Delete | 🛡️ Arch |
