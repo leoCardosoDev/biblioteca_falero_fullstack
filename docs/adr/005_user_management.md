@@ -1,47 +1,47 @@
-# ADR 005: Gestão de Usuários (User Management)
+# ADR 005: User Management Strategy
 
-## Contexto e Problema
-O sistema necessita de uma gestão robusta de usuários que permita a criação de perfis, listagem, atualização e exclusão, além da gestão separada de credenciais de acesso. O Frontend precisa de uma definição clara de contratos, regras de negócio e tratamento de erros para implementar as telas de administração.
+## Context & Problem
+The system requires robust user management allowing profile creation, listing, updating, and deletion, alongside separate access credential management. The Frontend needs clear contracts, business rules, and error handling to implement administration screens.
 
-## Direcionadores
-- **Segurança**: Autenticação e Autorização obrigatórias via JWT.
-- **Integridade**: Validação rigorosa em multicamadas (Schema e Domain).
-- **Separação de Responsabilidades**: Dados de perfil separados de credenciais de login.
-- **Escalabilidade**: Suporte a papéis (`admin`, `librarian`, `user`).
+## Drivers
+- **Security**: Mandatory Authentication and Authorization via JWT.
+- **Integrity**: Rigorous validation in multiple layers (Schema and Domain).
+- **Separation of Concerns**: Profile data separated from login credentials.
+- **Scalability**: Support for roles (`admin`, `librarian`, `user`).
 
-## Decisão
-Implementamos um fluxo de gestão de usuários baseado em DDD e Clean Architecture no Backend, com os seguintes contratos:
+## Decision
+We implement a user management flow based on DDD and Clean Architecture in the Backend, with the following contracts:
 
-### 1. Endpoints de Usuário
-- `POST /users`: Criação de perfil básico.
-    - **Requer**: Autenticação (Admin/Librarian).
-    - **Payload**: `{ name, email, rg, cpf, birthDate, address? }`.
-- `GET /users`: Listagem de usuários.
-    - **Requer**: Autenticação (Admin/Librarian).
-- `PUT /users/:id`: Atualização de perfil/role.
-    - **Requer**: Autenticação (Admin).
-    - **Payload**: `{ name?, email?, role?, rg?, cpf?, birthDate?, address? }`.
-- `DELETE /users/:id`: Remoção de usuário.
-    - **Requer**: Autenticação (Admin).
-- `POST /users/:userId/login`: Criação de credenciais de acesso.
-    - **Requer**: Autenticação (Admin/Librarian).
-    - **Payload**: `{ username?, password }`.
+### 1. User Endpoints
+- `POST /users`: Basic profile creation.
+    - **Requires**: Authentication (Admin/Librarian).
+    - **Payload**: `{ full_name, email, rg, cpf, address: { street, number... } }`.
+- `GET /users`: User listing.
+    - **Requires**: Authentication (Admin/Librarian).
+- `PUT /users/:id`: Profile/Role update.
+    - **Requires**: Authentication (Admin).
+    - **Payload**: `{ full_name?, email?, role?, rg?, cpf?, address? }`.
+- `DELETE /users/:id`: User removal.
+    - **Requires**: Authentication (Admin).
+- `POST /users/:userId/login`: Access credential creation.
+    - **Requires**: Authentication (Admin/Librarian).
+    - **Payload**: `{ password, role_id }`.
 
-### 2. Autenticação
-- `POST /login`: Login com email/password. Retorna `accessToken`, `refreshToken`, `name` e `role`.
-- `POST /refresh-token`: Renovação de tokens usando `refreshToken`.
+### 2. Authentication
+- `POST /login`: Login with email/password. Returns `accessToken`, `refreshToken`, `name`, and `role`.
+- `POST /refresh-token`: Token renewal using `refreshToken`.
 
-### 3. Regras de Validação e Negócio
-- **CPF/Email/RG**: Devem ser únicos no sistema.
-- **Senha**: Mínimo 8 caracteres, contendo maiúscula, minúscula, número e caractere especial.
-- **Value Objects**: Todas as validações de formato (CPF, Email, etc.) são centralizadas em Value Objects no Domínio.
+### 3. Validation & Business Rules
+- **CPF/Email/RG**: Must be unique in the system.
+- **Password**: Minimum 8 chars, containing uppercase, lowercase, number, and special char.
+- **Value Objects**: Validations (CPF, Email, Address) are centralized in Domain Value Objects.
 
-### 4. Tratamento de Erros
-- `400 Bad Request`: Erro de validação de formato ou parâmetros ausentes.
-- `401 Unauthorized`: Token inválido ou expirado.
-- `403 Forbidden`: Violação de regra de negócio (ex: CPF já existe) ou permissão insuficiente (RBAC).
-- `404 Not Found`: Usuário não encontrado.
+### 4. Error Handling
+- `400 Bad Request`: Validation error or missing parameters.
+- `401 Unauthorized`: Invalid or expired token.
+- `403 Forbidden`: Business rule violation (e.g., CPF already exists) or insufficient permission (RBAC).
+- `404 Not Found`: User not found.
 
-## Consequências
-- **Positivo**: Alta rastreabilidade e segurança. Separação clara entre "quem é o usuário" e "como ele acessa o sistema".
-- **Negativo**: Maior complexidade no frontend para gerenciar o fluxo em duas etapas (Criar Perfil -> Criar Login).
+## Consequences
+- **Positive**: High code traceability and security. Clear separation between "who the user is" and "how they access".
+- **Negative**: Higher frontend complexity to manage the two-step flow (Create Profile -> Create Login).

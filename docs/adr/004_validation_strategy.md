@@ -23,8 +23,8 @@ We implement a **Validation Composite** pattern in the `presentation` layer.
 
 2.  **Validators**: Implement small, specific classes implementing this interface.
     -   `RequiredFieldValidation`
-    -   `EmailValidation`
     -   `CompareFieldsValidation`
+    -   `ValueObjectAdapterValidation` (Wraps Domain VOs like `Email`, `CPF` to ensure format consistency with Domain).
 
 3.  **Composite**: A `ValidationComposite` class that takes an array of `Validation` objects and runs them sequentially.
     -   If any fails, it returns the error immediately.
@@ -55,9 +55,13 @@ classDiagram
     
     Validation <|.. ValidationComposite
     Validation <|.. RequiredFieldValidation
-    Validation <|.. EmailValidation
+    Validation <|.. ValueObjectAdapterValidation
     ValidationComposite o-- Validation
 ```
+
+## Strategic Alignment
+With the adoption of **ADR 006 (Rich Domain Models)**, validation logic regarding *format* (e.g., valid email, valid CPF) MUST reside in the Domain (Value Objects).
+The Presentation layer validators should acts as Adapters or simple structural checks (Required Field), deferring complex rules to the Domain to avoid "Anemic Model" anti-pattern.
 
 ## Consequences
 - **Positive**: perfectly clean controllers, easy to unit test validators in isolation.
