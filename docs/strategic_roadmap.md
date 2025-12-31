@@ -11,7 +11,7 @@
 ## 🚀 Phase 1: Foundation & Shared Kernel (The "Bedrock")
 *Goal: Establish the immutable truths of the system.*
 
-1.  **Task 017**: Shared Kernel - State (DB + Seed)
+1.  **Task 017**: Shared Kernel - State (DB + Seed) [DONE]
     - *Why*: User addresses depend on this. Zero dependency.
 2.  **Task 018**: Shared Kernel - City (DB + Seed)
     - *Why*: Depends on State.
@@ -68,7 +68,7 @@
 
 | Order | Task ID | Description | Type |
 | :--- | :--- | :--- | :--- |
-| **1** | `017` | Geography: State | 🧱 Infra |
+| **1** | `017` | Geography: State [DONE] | 🧱 Infra |
 | **2** | `018` | Geography: City | 🧱 Infra |
 | **3** | `019` | Geography: Neighborhood | 🧱 Infra |
 | **4** | `007` | Domain: User & Address | 🧠 Domain |
