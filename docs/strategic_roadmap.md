@@ -13,7 +13,7 @@
 
 1.  **Task 017**: Shared Kernel - State (DB + Seed) [DONE]
     - *Why*: User addresses depend on this. Zero dependency.
-2.  **Task 018**: Shared Kernel - City (DB + Seed)
+2.  **Task 018**: Shared Kernel - City (DB + Seed) [DONE]
     - *Why*: Depends on State.
 3.  **Task 019**: Shared Kernel - Neighborhood (On-Demand)
     - *Why*: Completes the Geography triad.
