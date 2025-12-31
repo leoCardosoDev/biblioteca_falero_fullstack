@@ -66,4 +66,4 @@ The Backend has been refactored (Task 006) to separate `User` (Identity) from `L
 *   Verify List vs. Detail view behavior.
 
 ## Dependencies
-*   **Related**: [TD002: Backend Inconsistency](file:///c:/Users/leosi/OneDrive/Documentos/SoftwareHouse/app/docs/specs/TD/TD002_backend_load_users_inconsistency.md)
+*   **Related**: [TD002: Backend Inconsistency](../TD/TD002_backend_load_users_inconsistency.md)

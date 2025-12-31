@@ -5,7 +5,7 @@ You are the BACKEND DEVELOPER (BACKEND-DEV).
 </role>
 
 <dependent_tasks>
-- Depends on: `app/docs/adr/006_architectural_foundations.md` (ADR 006)
+- Depends on: `../../adr/006_architectural_foundations.md` (ADR 006)
 </dependent_tasks>
 
 <context>

@@ -21,6 +21,17 @@ We utilize Tailwind CSS as our token engine. Key semantic tokens include:
     *   Warning: `#f59e0b`
     *   Danger: `#ef4444`
 
+#### Semantic Domain Aliases
+*   **User Status**:
+    *   `Status.Success` -> **Active**
+    *   `Status.Danger` -> **Blocked** / **Inactive**
+*   **Loan Status**:
+    *   `Status.Success` -> **Open**
+    *   `Status.Warning` -> **Overdue** (Initial warning)
+    *   `Status.Danger` -> **Loss** / **Damage**
+*   **Unit Status**:
+    *   `Status.Warning` -> **Maintenance**
+
 ### Typography
 *   **Font**: Inter (sans-serif)
 *   **Scale**: Consistent use of `text-xs` to `text-3xl`.
@@ -32,24 +43,36 @@ We utilize Tailwind CSS as our token engine. Key semantic tokens include:
 #### `Button`
 Standard interaction element.
 ```tsx
-<Button variant="primary" icon="add">Add Item</Button>
-<Button variant="secondary">Cancel</Button>
-<Button variant="danger">Delete</Button>
-<Button variant="ghost">Transparent</Button>
+// Domain: Inventory Context
+<Button variant="primary" icon="add">Add Work Copy</Button>
+
+// Domain: Circulation Context
+<Button variant="secondary">Cancel Reservation</Button>
+<Button variant="danger">Report Lost Book</Button>
 ```
 
 #### `Input` / `Select` / `TextArea`
 Standardized form fields with built-in label and icon support.
 ```tsx
+// Domain: User Context (Registration)
 <Input 
-    label="Username" 
+    label="Full Name" 
     icon="person" 
-    placeholder="Enter username" 
+    placeholder="John Doe" 
     required 
 />
 
-<Select label="Role" icon="badge">
-    <option value="admin">Admin</option>
+<Input 
+    label="CPF" 
+    icon="badge" 
+    placeholder="000.000.000-00" 
+    mask="999.999.999-99"
+    required 
+/>
+
+<Select label="Role" icon="security">
+    <option value="librarian">Librarian</option>
+    <option value="admin">Administrator</option>
 </Select>
 ```
 
@@ -64,8 +87,8 @@ The fundamental container for content.
 #### `Modal`
 Overlay for focused tasks.
 ```tsx
-<Modal isOpen={true} title="Edit User" onClose={handleClose}>
-    <Form />
+<Modal isOpen={true} title="Edit User Profile" onClose={handleClose}>
+    <UserForm user={selectedUser} onSubmit={handleUpdate} />
 </Modal>
 ```
 

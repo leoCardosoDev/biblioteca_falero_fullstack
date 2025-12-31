@@ -8,8 +8,8 @@ I am drafting the specification for refactoring the Frontend Login to adhere to 
 </role>
 
 <dependent_tasks>
-- [ADR 001 - Login Architecture](file:///c:/Users/leosi/OneDrive/Documentos/SoftwareHouse/app/docs/adr/001_login_architecture.md)
-- [Design System Documentation](file:///c:/Users/leosi/OneDrive/Documentos/SoftwareHouse/app/docs/design_system/DESIGN_SYSTEM.md)
+- [ADR 001 - Login Architecture](../../adr/001_login_architecture.md)
+- [Design System Documentation](../../design_system/DESIGN_SYSTEM.md)
 </dependent_tasks>
 
 <context>
@@ -50,8 +50,8 @@ Detailed refactoring of the Frontend Login feature.
   - Do NOT put business logic (like API calling) inside the React Component.
   - Do NOT put tests inside the `src` folder (use `/tests`).
 - **Standard Compliance**: 
-  - [STANDARD_GENERAL.md](file:///c:/Users/leosi/OneDrive/Documentos/SoftwareHouse/workflow/standards/STANDARD_GENERAL.md)
-  - [STANDARD_FRONTEND.md](file:///c:/Users/leosi/OneDrive/Documentos/SoftwareHouse/workflow/standards/STANDARD_FRONTEND.md)
+  - [STANDARD_GENERAL.md](../../../../workflow/standards/STANDARD_GENERAL.md)
+  - [STANDARD_FRONTEND.md](../../../../workflow/standards/STANDARD_FRONTEND.md)
 </requirements>
 
 <acceptance_criteria>
