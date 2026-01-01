@@ -29,7 +29,7 @@
     - *Why*: Applies to User and future tables. Best to enforce before migration data grows.
 6.  **Task 021**: Soft Delete & Explicit Status [DONE]
     - *Why*: Critical for "User" lifecycle.
-7.  **Task 022**: DB Performance & Integrity (Indexes/Locking)
+7.  **Task 022**: DB Performance & Integrity (Indexes/Locking) [DONE]
     - *Why*: Prevents race conditions from day one.
 8.  **Task 023**: Domain Events Infrastructure
     - *Why*: Prepare the ground for decoupling (needed for Auth refactor).
@@ -40,7 +40,7 @@
 *Goal: Fix known issues and separate Concerns (Identity vs Access).*
 
 9.  **Task 016**: Fix Backend Load Users (TD002)
-    - *Why*: The frontend is currently broken/incomplete for user management. Needs the `User` refactor (Task 007) to be done first.
+    - *Why*: The frontend is currently broken/incomplete for user management. Needs the `User` refactor (Task 007) to be done first.[DONE]
 10. **Task 008**: Backend Refactor - Auth (Login Separation)
     - *Why*: Strictly separates `Login` from `User`. Heavy refactor.
 11. **Task 009**: Frontend Refactor - Auth
@@ -72,11 +72,11 @@
 | **2** | `018` | Geography: City [DONE] | 🧱 Infra |
 | **3** | `019` | Geography: Neighborhood [DONE] | 🧱 Infra |
 | **4** | `007` | Domain: User & Address [DONE] | 🧠 Domain |
-| **5** | `020` | Gov: Timestamps | 🛡️ Arch |
-| **6** | `021` | Gov: Soft Delete | 🛡️ Arch |
-| **7** | `022` | Gov: Indexes/Locking | 🛡️ Arch |
+| **5** | `020` | Gov: Timestamps | 🛡️ Arch [DONE] |
+| **6** | `021` | Gov: Soft Delete | 🛡️ Arch [DONE] |
+| **7** | `022` | Gov: Indexes/Locking [DONE] | 🛡️ Arch |
 | **8** | `023` | Gov: Domain Events | 🛡️ Arch |
-| **9** | `016` | Fix: Load Users | 🐛 Fix |
+| **9** | `016` | Fix: Load Users | 🐛 Fix [DONE] |
 | **10** | `008` | Refactor: Auth Backend | ♻️ Refactor |
 | **11** | `009` | Refactor: Auth Frontend | ♻️ Refactor |
 | **12+** | `010-015` | Features (Catalog/Circulation) | ✨ Feature |
