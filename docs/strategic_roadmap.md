@@ -31,7 +31,7 @@
     - *Why*: Critical for "User" lifecycle.
 7.  **Task 022**: DB Performance & Integrity (Indexes/Locking) [DONE]
     - *Why*: Prevents race conditions from day one.
-8.  **Task 023**: Domain Events Infrastructure
+8.  **Task 023**: Domain Events Infrastructure [DONE]
     - *Why*: Prepare the ground for decoupling (needed for Auth refactor).
 
 ---
@@ -75,7 +75,7 @@
 | **5** | `020` | Gov: Timestamps | 🛡️ Arch [DONE] |
 | **6** | `021` | Gov: Soft Delete | 🛡️ Arch [DONE] |
 | **7** | `022` | Gov: Indexes/Locking [DONE] | 🛡️ Arch |
-| **8** | `023` | Gov: Domain Events | 🛡️ Arch |
+| **8** | `023` | Gov: Domain Events [DONE] | 🛡️ Arch |
 | **9** | `016` | Fix: Load Users | 🐛 Fix [DONE] |
 | **10** | `008` | Refactor: Auth Backend | ♻️ Refactor |
 | **11** | `009` | Refactor: Auth Frontend | ♻️ Refactor |
