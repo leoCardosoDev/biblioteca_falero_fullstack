@@ -6,7 +6,7 @@ You are the BACKEND DEVELOPER (BACKEND-DEV).
 
 <dependent_tasks>
 - Depends on: `task_007_backend_refactor_domain.md`
-- Depends on: `app/docs/bussines/backlog_04_access_control.md`
+- Depends on: `app/docs/bussines/story_04_access_control.md`
 </dependent_tasks>
 
 <context>
@@ -29,6 +29,12 @@ Authentication logic currently resides mixed within User. We need to split it in
 - **Constraint**: Passwords MUST be hashed.
 - **Constraint**: Login MUST reference a User ID.
 </requirements>
+
+<standards_compliance>
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
+</standards_compliance>
 
 <acceptance_criteria>
 - [ ] `Login` entity implemented.

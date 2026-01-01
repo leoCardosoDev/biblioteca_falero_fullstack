@@ -5,9 +5,9 @@ You are the BACKEND DEVELOPER (BACKEND-DEV).
 </role>
 
 <dependent_tasks>
-- Related to: `app/docs/specs/TD/TD002_backend_load_users_inconsistency.md`
+- Related to: `app/docs/specs/technical_debt/TD002_backend_load_users_inconsistency.md`
 - Compliance: `app/docs/adr/002_user_login_separation.md` (ADR 002)
-- Compliance: `app/docs/bussines/backlog_04_access_control.md`
+- Compliance: `app/docs/bussines/story_04_access_control.md`
 </dependent_tasks>
 
 <context>
@@ -39,6 +39,7 @@ While ADR 002 enforces separation of User and Login, the "User List" view (Admin
 
 <standards_compliance>
 - **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
 - **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
 </standards_compliance>
 

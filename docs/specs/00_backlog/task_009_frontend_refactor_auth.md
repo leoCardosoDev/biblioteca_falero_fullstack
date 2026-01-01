@@ -24,6 +24,12 @@ The Backend refactoring (Tasks 007 & 008) changed the API contract. User data is
 - **Constraint**: Maintain "Clean Architecture" pattern in frontend.
 </requirements>
 
+<standards_compliance>
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: FRONTEND**: `workflow/standards/STANDARD_FRONTEND.md`
+</standards_compliance>
+
 <acceptance_criteria>
 - [ ] Login works with new backend.
 - [ ] User profile can be viewed/edited with new fields (Address, Gender, etc.).

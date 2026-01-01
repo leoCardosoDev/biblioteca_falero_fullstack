@@ -52,8 +52,9 @@ Refactor the Login module to align with the standard architecture:
 </requirements>
 
 <standards_compliance>
-- **General**: [STANDARD_GENERAL.md](../../../workflow/standards/STANDARD_GENERAL.md)
-- **Context: FRONTEND**: [STANDARD_FRONTEND.md](../../../workflow/standards/STANDARD_FRONTEND.md)
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: FRONTEND**: `workflow/standards/STANDARD_FRONTEND.md`
 </standards_compliance>
 
 <acceptance_criteria>

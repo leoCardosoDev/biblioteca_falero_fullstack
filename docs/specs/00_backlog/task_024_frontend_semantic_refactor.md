@@ -17,13 +17,18 @@ The current frontend uses generic naming (e.g., "Username" instead of "CPF") and
 
 ### 3.2 UI Components (Refactor)
 *   [ ] **LoginForm** (`presentation/components/login-form.tsx`):
-    *   Change "Usuário" label to what is defined in the Domain (likely "Email" for login, or "CPF" if that was the decision, but `User` entity has `email` and `cpf`. `Login` entity usually uses `email` or `username`. Check `backlog_04_access_control.md`). *Correction*: `backlog_04` says Login uses `email` and `password`. So "Usuário" might be ambiguous, "Email" is precise.
+    *   Change "Usuário" label to what is defined in the Domain (likely "Email" for login, or "CPF" if that was the decision, but `User` entity has `email` and `cpf`. `Login` entity usually uses `email` or `username`. Check `story_04_access_control.md`). *Correction*: `backlog_04` says Login uses `email` and `password`. So "Usuário" might be ambiguous, "Email" is precise.
     *   Use semantic colors for errors/buttons.
 *   [ ] **UI Primitives** (`presentation/components/ui`):
     *   Review `Badge`, `Button`, `Input` to ensure they accept/use the new semantic variants if applicable.
 
 ### 3.3 Standardization
 *   [ ] Replace any hardcoded strings with Domain Terminology where applicable.
+
+## 3.4 Standards Compliance
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: FRONTEND**: `workflow/standards/STANDARD_FRONTEND.md`
 
 ## 4. Definition of Done
 *   [ ] `tailwind.config.js` contains all semantic tokens.

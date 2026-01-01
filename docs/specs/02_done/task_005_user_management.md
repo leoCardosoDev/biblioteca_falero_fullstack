@@ -65,12 +65,14 @@ Detailed implementation requirements for both Backend and Frontend:
 
 <requirements>
 - **Stack**: Node.js, TypeScript, TypeORM (Backend) / React, Vitest, Axios, Zod (Frontend).
-- **Standards Compliance**:
-    - **General**: [STANDARD_GENERAL.md](../../../workflow/standards/STANDARD_GENERAL.md)
-    - **Backend**: [STANDARD_BACKEND.md](../../../workflow/standards/STANDARD_BACKEND.md)
-    - **Frontend**: [STANDARD_FRONTEND.md](../../../workflow/standards/STANDARD_FRONTEND.md)
-    - **Gitflow**: [STANDARD_GITFLOW.md](../../../workflow/standards/STANDARD_GITFLOW.md)
 </requirements>
+
+<standards_compliance>
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
+- **Context: FRONTEND**: `workflow/standards/STANDARD_FRONTEND.md`
+</standards_compliance>
 
 <api_specification>
 #### POST /users

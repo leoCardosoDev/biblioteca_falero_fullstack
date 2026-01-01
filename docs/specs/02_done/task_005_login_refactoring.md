@@ -49,10 +49,13 @@ Detailed refactoring of the Frontend Login feature.
   - Do NOT use raw HTML `<input>` or `<button>` tags (use Design System components).
   - Do NOT put business logic (like API calling) inside the React Component.
   - Do NOT put tests inside the `src` folder (use `/tests`).
-- **Standard Compliance**: 
-  - [STANDARD_GENERAL.md](../../../../workflow/standards/STANDARD_GENERAL.md)
-  - [STANDARD_FRONTEND.md](../../../../workflow/standards/STANDARD_FRONTEND.md)
 </requirements>
+
+<standards_compliance>
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: FRONTEND**: `workflow/standards/STANDARD_FRONTEND.md`
+</standards_compliance>
 
 <acceptance_criteria>
 - [ ] **Architecture**: Separation of concerns between UI, Hook, Repository, and Factory is strictly followed as per ADR 001.

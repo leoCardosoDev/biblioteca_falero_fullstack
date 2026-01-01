@@ -36,6 +36,7 @@ States should be Enums, not inferred.
 
 <standards_compliance>
 - **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
 - **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
 - **ADR**: `app/docs/adr/009_mature_data_architecture.md`
 </standards_compliance>

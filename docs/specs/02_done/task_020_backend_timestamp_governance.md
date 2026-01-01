@@ -36,6 +36,7 @@ Currently, usage might be inconsistent. We must ensure "living" entities have au
 
 <standards_compliance>
 - **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
 - **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
 - **ADR**: `app/docs/adr/008_timestamp_governance.md`
 </standards_compliance>

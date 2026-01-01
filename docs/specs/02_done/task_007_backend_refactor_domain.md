@@ -16,7 +16,7 @@ The current backend has mixed naming conventions and a `User` model that confoun
 **Backend**:
 1.  **Shared Kernel**: Implement `Address` Value Object (Street, Number, Complement, ZipCode, NeighborhoodId, CityId).
     -   *Note*: Geography tables (State, City, Neighborhood) need Repositories (Read-Only for now).
-2.  **User Entity**: Refactor `User` to match `backlog_02_user.md`.
+2.  **User Entity**: Refactor `User` to match `story_02_user.md`.
     -   Fields: `full_name`, `rg`, `cpf`, `gender`, `email`, `phone`, `Address` (embedded).
     -   Remove: `birthDate` (if present), `password`, `role`.
 3.  **Naming**: Rename `Usuario` classes/files to `User` if any exist. Ensure strictly English domain.
@@ -28,6 +28,12 @@ The current backend has mixed naming conventions and a `User` model that confoun
 - **Constraint**: Do NOT implement Login/Auth logic here. Just the Identity aspect.
 - **Constraint**: Use English for all table names and columns.
 </requirements>
+
+<standards_compliance>
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
+</standards_compliance>
 
 <acceptance_criteria>
 - [ ] `Address` Value Object implemented and tested.

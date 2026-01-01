@@ -32,6 +32,7 @@ This should be done via an automated seed script using official data (IBGE), not
 
 <standards_compliance>
 - **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
 - **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
 </standards_compliance>
 

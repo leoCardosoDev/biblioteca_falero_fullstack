@@ -28,6 +28,12 @@ Implement the Catalog domain to manage bibliographic data (Books, Authors, Publi
 - **Constraint**: Apply DDD patterns.
 </requirements>
 
+<standards_compliance>
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
+</standards_compliance>
+
 <acceptance_criteria>
 - [ ] CRUD for Works, Authors, Publishers working.
 - [ ] Relations (e.g., Work -> Author) correctly saved/retrieved.

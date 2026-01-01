@@ -32,6 +32,7 @@ Neighborhoods are created automatically when referenced if they don't exist for 
 
 <standards_compliance>
 - **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
 - **Context: BACKEND**: `workflow/standards/STANDARD_BACKEND.md`
 </standards_compliance>
 

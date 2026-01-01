@@ -65,5 +65,10 @@ The Backend has been refactored (Task 006) to separate `User` (Identity) from `L
 *   Create a login for an existing user.
 *   Verify List vs. Detail view behavior.
 
+## Standards Compliance
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: FRONTEND**: `workflow/standards/STANDARD_FRONTEND.md`
+
 ## Dependencies
 *   **Related**: [TD002: Backend Inconsistency](../TD/TD002_backend_load_users_inconsistency.md)

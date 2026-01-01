@@ -17,7 +17,7 @@
     - *Why*: Depends on State.
 3.  **Task 019**: Shared Kernel - Neighborhood (On-Demand) [DONE]
     - *Why*: Completes the Geography triad.
-4.  **Task 007**: Backend Refactor - Domain Core (User & Address)
+4.  **Task 007**: Backend Refactor - Domain Core (User & Address) [DONE]
     - *Why*: Implements the `Address` VO using the Geography tables above. Defines the new `User` structure.
 
 ---
@@ -25,7 +25,7 @@
 ## 🛡️ Phase 2: Data Governance & Integrity (The "Rules")
 *Goal: Ensure data quality and auditability before scaling.*
 
-5.  **Task 020**: Timestamp Governance (`created_at`/`updated_at`)
+5.  **Task 020**: Enforce Timestamp Governance (Create/Update dates) [DONE]
     - *Why*: Applies to User and future tables. Best to enforce before migration data grows.
 6.  **Task 021**: Soft Delete & Explicit Status
     - *Why*: Critical for "User" lifecycle.
@@ -71,7 +71,7 @@
 | **1** | `017` | Geography: State [DONE] | 🧱 Infra |
 | **2** | `018` | Geography: City [DONE] | 🧱 Infra |
 | **3** | `019` | Geography: Neighborhood [DONE] | 🧱 Infra |
-| **4** | `007` | Domain: User & Address | 🧠 Domain |
+| **4** | `007` | Domain: User & Address [DONE] | 🧠 Domain |
 | **5** | `020` | Gov: Timestamps | 🛡️ Arch |
 | **6** | `021` | Gov: Soft Delete | 🛡️ Arch |
 | **7** | `022` | Gov: Indexes/Locking | 🛡️ Arch |

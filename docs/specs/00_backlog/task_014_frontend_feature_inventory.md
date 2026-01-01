@@ -21,6 +21,12 @@ Manage physical copies.
 2.  **Logic**: Barcode scanning simulation (input field).
 </scope>
 
+<standards_compliance>
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: FRONTEND**: `workflow/standards/STANDARD_FRONTEND.md`
+</standards_compliance>
+
 <acceptance_criteria>
 - [ ] Can add copies to a book.
 - [ ] Can view status of copies.

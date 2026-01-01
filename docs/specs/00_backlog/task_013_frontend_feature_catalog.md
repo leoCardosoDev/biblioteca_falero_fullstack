@@ -21,6 +21,12 @@ Create screens to manage the Library Catalog.
 2.  **Components**: BookCard, SearchBar.
 </scope>
 
+<standards_compliance>
+- **General**: `workflow/standards/STANDARD_GENERAL.md`
+- **Gitflow**: `workflow/standards/STANDARD_GITFLOW.md`
+- **Context: FRONTEND**: `workflow/standards/STANDARD_FRONTEND.md`
+</standards_compliance>
+
 <acceptance_criteria>
 - [ ] Can search for books.
 - [ ] Admin can add new books.
