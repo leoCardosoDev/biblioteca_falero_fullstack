@@ -27,7 +27,7 @@
 
 5.  **Task 020**: Enforce Timestamp Governance (Create/Update dates) [DONE]
     - *Why*: Applies to User and future tables. Best to enforce before migration data grows.
-6.  **Task 021**: Soft Delete & Explicit Status
+6.  **Task 021**: Soft Delete & Explicit Status [DONE]
     - *Why*: Critical for "User" lifecycle.
 7.  **Task 022**: DB Performance & Integrity (Indexes/Locking)
     - *Why*: Prevents race conditions from day one.
