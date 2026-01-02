@@ -30,7 +30,7 @@
 6.  **Task 021**: Soft Delete & Explicit Status [DONE]
     - *Why*: Critical for "User" lifecycle.
 7.  **Task 026**: User Governance (Split)
-    -   [ ] **Task 026.1**: Backend Infra (Power Levels) `[HIGH]`
+    -   [x] **Task 026.1**: Backend Infra (Power Levels) `[HIGH]`
     -   [ ] **Task 026.2**: Backend Logic (HAC Rules) `[HIGH]`
     -   [ ] **Task 026.3**: Backend API `[HIGH]`
     - *Why*: Establishes granular control over user permissions and access.
