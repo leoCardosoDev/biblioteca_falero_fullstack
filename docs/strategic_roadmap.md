@@ -91,11 +91,12 @@
 | **11** | `009` | Refactor: Auth Frontend (Granular) | ♻️ Refactor |
 | **12** | `024` | Documentation: API & Seeds | 📝 Docs [DONE] |
 | **13** | `025` | Error Handling: Standardization | 🛡️ Arch [DONE] |
-| **14** | `026` | Feature: User Governance (Roles/Status) | 🛡️ Arch |
-| **15** | `010.x` | Feature: Catalog (9 sub-tasks) | ✨ Feature |
-| **16** | `011.x` | Feature: Inventory (3 sub-tasks) | ✨ Feature |
-| **17** | `012.x` | Feature: Circulation (4 sub-tasks) | ✨ Feature |
+| **14** | `027` | Audit: Backend Test Quality | [DONE] 🛡️ Arch |
+| **15** | `028.x` | Refinement: Backend Quality (6 sub-tasks) | 🐛 Fix |
+| **16** | `010.x` | Feature: Catalog (9 sub-tasks) | ✨ Feature |
+| **17** | `011.x` | Feature: Inventory (3 sub-tasks) | ✨ Feature |
+| **18** | `012.x` | Feature: Circulation (4 sub-tasks) | ✨ Feature |
 
 ---
-**Recommendation**: Start with **Task 009.1** (Frontend Auth) or **Task 010.1** (Backend Language) depending on team capacity.
+**Recommendation**: Start with **Task 027** (Test Audit) to establish a baseline of quality before moving to **Task 009.1** (Frontend Auth) or **Task 010.1** (Backend Language).
 Refer to `app/docs/strategic_analysis.md` for the detailed granular breakdown.
