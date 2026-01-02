@@ -21,6 +21,9 @@ So that **we can track who is interacting with the library services.**
 - [ ] **Unique Contact**: Users must have unique Email.
 - [ ] **Mandatory Data**: Full Name, RG, CPF, Gender.
 - [ ] **Address Linking**: User address must be linked to valid Geography entities.
+- [ ] **Explicit Status**: User must have a status (`ACTIVE`, `INACTIVE`, `BLOCKED`).
+- [ ] **Data Persistence**: Use **Soft Delete** (`deleted_at`) for auditing; natural person data is preserved even if access is revoked.
+- [ ] **Concurrency Control**: Updates use **Optimistic Locking** (`version`) to prevent data loss.
 - [ ] **No Login Data**: This story does NOT cover password creation (see Access Control).
 
 ## Out of Scope

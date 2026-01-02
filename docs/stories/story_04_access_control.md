@@ -21,7 +21,7 @@ So that **authentication is secure and users can only perform authorized actions
 - [ ] **RBAC Model**: Access is granted via Roles which aggregate Permissions.
 - [ ] **Separation**: Login entity is separate from User entity.
 - [ ] **Linking**: A Login must be linked to a valid User.
-- [ ] **Active State**: Logins can be deactivated (banning access) without deleting the User identity.
+- [ ] **Lifecycle**: Logins support **Soft Delete** and **Explicit Status** for auditability and quick revocation.
 
 ## Out of Scope
 - SSO / OAuth (Google/Facebook login).

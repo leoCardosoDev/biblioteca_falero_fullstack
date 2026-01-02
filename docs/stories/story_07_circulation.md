@@ -19,6 +19,8 @@ So that **materials can be borrowed and tracked efficiently.**
 ## Acceptance Criteria
 - [ ] **Validation**: Cannot loan a book if it is NOT 'AVAILABLE'.
 - [ ] **Reservation Check**: Cannot loan a book if it is reserved by *another* user.
+- [ ] **Explicit Status**: Loans transition between `OPEN`, `CLOSED`, and `OVERDUE`.
+- [ ] **Auditability**: All loan records use **Soft Delete** and **Optimistic Locking** for integrity.
 - [ ] **Status Updates**:
     - Checkout -> Copy status becomes 'BORROWED'.
     - Return -> Copy status becomes 'AVAILABLE'.
