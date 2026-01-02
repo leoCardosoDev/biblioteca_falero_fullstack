@@ -29,7 +29,7 @@
     - *Why*: Applies to User and future tables. Best to enforce before migration data grows.
 6.  **Task 021**: Soft Delete & Explicit Status [DONE]
     - *Why*: Critical for "User" lifecycle.
-7.  **Task 026**: User Governance (Split)
+7.  **Task 026**: User Governance (Split) [DONE]
     -   [x] **Task 026.1**: Backend Infra (Power Levels) `[HIGH]`
     -   [x] **Task 026.2**: Backend Logic (HAC Rules) `[HIGH]`
     -   [x] **Task 026.3**: Backend API `[HIGH]`
