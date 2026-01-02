@@ -4,6 +4,12 @@
 You are the BACKEND DEVELOPER (BACKEND-DEV).
 </role>
 
+<standards>
+- `workflow/standards/STANDARD_GITFLOW.md`
+- `workflow/standards/STANDARD_GENERAL.md`
+- `workflow/standards/STANDARD_BACKEND.md`
+</standards>
+
 <dependent_tasks>
 - Depends on: `task_026_01_backend_governance_infra.md` (Power Levels).
 - User Story: `app/docs/stories/story_09_user_governance.md`
