@@ -50,9 +50,9 @@
     - *Why*: Strictly separates `Login` from `User`. Heavy refactor.
 11. **Task 009**: Frontend Refactor - Auth
     - *Why*: Consumes the new Auth API.
-12. **Task 024**: Update API Documentation and Seeds
+12. **Task 024**: Update API Documentation and Seeds [DONE]
     - *Why*: Synchronizes technical documentation with recent refactors and provides a standardized playground for QA.
-13. **Task 025**: Standardized Error Messages [DONE]
+11. **Task 025**: Standardized Error Messages [DONE]
     - *Why*: Ensures consistent, actionable error responses across the API.
 
 ---
@@ -89,7 +89,7 @@
 | **9** | `016` | Fix: Load Users | 🐛 Fix [DONE] |
 | **10** | `008` | Refactor: Auth Backend | ♻️ Refactor [DONE] |
 | **11** | `009` | Refactor: Auth Frontend (Granular) | ♻️ Refactor |
-| **12** | `024` | Documentation: API & Seeds | 📝 Docs [IN PROGRESS] |
+| **12** | `024` | Documentation: API & Seeds | 📝 Docs [DONE] |
 | **13** | `025` | Error Handling: Standardization | 🛡️ Arch [DONE] |
 | **14** | `026` | Feature: User Governance (Roles/Status) | 🛡️ Arch |
 | **15** | `010.x` | Feature: Catalog (9 sub-tasks) | ✨ Feature |
