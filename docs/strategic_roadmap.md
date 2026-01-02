@@ -29,9 +29,14 @@
     - *Why*: Applies to User and future tables. Best to enforce before migration data grows.
 6.  **Task 021**: Soft Delete & Explicit Status [DONE]
     - *Why*: Critical for "User" lifecycle.
-7.  **Task 022**: DB Performance & Integrity (Indexes/Locking) [DONE]
+7.  **Task 026**: User Governance (Split)
+    -   [ ] **Task 026.1**: Backend Infra (Power Levels) `[HIGH]`
+    -   [ ] **Task 026.2**: Backend Logic (HAC Rules) `[HIGH]`
+    -   [ ] **Task 026.3**: Backend API `[HIGH]`
+    - *Why*: Establishes granular control over user permissions and access.
+8.  **Task 022**: DB Performance & Integrity (Indexes/Locking) [DONE]
     - *Why*: Prevents race conditions from day one.
-8.  **Task 023**: Domain Events Infrastructure [DONE]
+9.  **Task 023**: Domain Events Infrastructure [DONE]
     - *Why*: Prepare the ground for decoupling (needed for Auth refactor).
 
 ---
@@ -68,6 +73,7 @@
 
 ---
 
+
 ## 📊 Summary of Execution Order
 
 | Order | Task ID | Description | Type |
@@ -82,10 +88,14 @@
 | **8** | `023` | Gov: Domain Events | [DONE] 🛡️ Arch |
 | **9** | `016` | Fix: Load Users | 🐛 Fix [DONE] |
 | **10** | `008` | Refactor: Auth Backend | ♻️ Refactor [DONE] |
-| **11** | `009` | Refactor: Auth Frontend | ♻️ Refactor |
+| **11** | `009` | Refactor: Auth Frontend (Granular) | ♻️ Refactor |
 | **12** | `024` | Documentation: API & Seeds | 📝 Docs [IN PROGRESS] |
 | **13** | `025` | Error Handling: Standardization | 🛡️ Arch [DONE] |
-| **14+** | `010-015` | Features (Catalog/Circulation) | ✨ Feature |
+| **14** | `026` | Feature: User Governance (Roles/Status) | 🛡️ Arch |
+| **15** | `010.x` | Feature: Catalog (9 sub-tasks) | ✨ Feature |
+| **16** | `011.x` | Feature: Inventory (3 sub-tasks) | ✨ Feature |
+| **17** | `012.x` | Feature: Circulation (4 sub-tasks) | ✨ Feature |
 
 ---
-**Recommendation**: Start immediately with **Task 017**.
+**Recommendation**: Start with **Task 009.1** (Frontend Auth) or **Task 010.1** (Backend Language) depending on team capacity.
+Refer to `app/docs/strategic_analysis.md` for the detailed granular breakdown.

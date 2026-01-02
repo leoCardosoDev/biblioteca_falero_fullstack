@@ -1,44 +1,51 @@
-# Task 026: User Governance Implementation
+# Task 026: Hierarchical User Governance
 
-## 1. Introduction
-This task implements the definition of specific endpoints for User Governance. Following the Single Responsibility Principle (SRP) and avoiding "God Methods", we will separate **Profile Updates** from **Governance Updates**.
+<role>
+You are the BACKEND DEVELOPER (BACKEND-DEV).
+</role>
 
-## 2. Architectural Design [ARC]
+<dependent_tasks>
+- Depends on: `task_008_backend_refactor_auth.md` (RBAC Foundation).
+- User Story: `app/docs/stories/story_09_user_governance.md`
+</dependent_tasks>
 
-### 2.1 Context
-- `PUT /api/users/:id`: Remains exclusive for **Profile Data** (Name, Address, Phone, personal Email).
-- **New Endpoints**: Dedicated to governance actions.
+<context>
+We need to enforce a **Hierarchical Access Control** system.
+- **ADMIN**: The Superuser. Can manage ALL roles.
+- **LIBRARIAN**: Operational Manager. Can manage *only* MEMBERS (Users).
+- **MEMBER**: Consumer. Can only manage *self* (Profile).
+</context>
 
-### 2.2 New Routes
-1.  **Update Status**
-    - `PATCH /api/users/:id/status`
-    - Body: `{ "status": "BLOCKED" | "ACTIVE" | "INACTIVE" }`
-    - Logic: Updates `users` table.
+<scope>
+**Backend**:
+1.  **Security Logic (Guard)**:
+    - Implement `CanManageUser(actor, target)` logic.
+    - Rule: `Actor.PowerLevel > Target.PowerLevel`.
+    - Power Levels: ADMIN (100) > LIBRARIAN (50) > MEMBER (10).
+    
+2.  **UseCases**:
+    - `BlockUser`:
+        - Admin -> Can block Librarian or Member.
+        - Librarian -> Can block Member (e.g., late return).
+        - Librarian -> CANNOT block Admin or other Librarian.
+    - `PromoteUser`:
+        - Admin -> Can promote Member to Librarian or Admin.
+        - Librarian -> CANNOT promote anyone.
 
-2.  **Update Role**
-    - `PATCH /api/users/:id/role`
-    - Body: `{ "role": "admin" | "librarian" | "user" }`
-    - Logic: Updates `logins` table (found by `userId`).
+3.  **Routes**:
+    - `PATCH /api/users/:id/status` (Block/Unblock)
+    - `PATCH /api/users/:id/role` (Promote/Demote)
 
-### 2.3 Security
-- **Role Required**: `ADMIN` only. (Librarians cannot promote users or block admins).
+</scope>
 
-## 3. Implementation Steps [DEV]
+<requirements>
+- **Stack**: NestJS/Express (Fastify), TypeORM.
+- **Pattern**: Strategy or Policy pattern for Permission Checks.
+</requirements>
 
-### 3.1 Domain Layer
-- Define `UpdateUserStatus` UseCase.
-- Define `UpdateUserRole` UseCase.
-- Ensure `UserStatus` and `UserRole` Value Objects are reused.
-
-### 3.2 Infra Layer
-- Add `updateStatus` method to `UserTypeOrmRepository`.
-- Add `updateRole` method to `LoginTypeOrmRepository`.
-
-### 3.3 Main Layer (Routes)
-- Register `PATCH /users/:id/status`
-- Register `PATCH /users/:id/role`
-
-## 4. Verification [QA]
-- Verify Admin can block User.
-- Verify Admin can promote User.
-- Verify User cannot access these endpoints.
+<acceptance_criteria>
+- [ ] Logic prevents Librarian from blocking Admin.
+- [ ] Logic allows Librarian to block Member.
+- [ ] Admin can do anything.
+- [ ] Unit tests for the Matrix of Permissions.
+</acceptance_criteria>
