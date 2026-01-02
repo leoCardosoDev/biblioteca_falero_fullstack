@@ -31,8 +31,8 @@
     - *Why*: Critical for "User" lifecycle.
 7.  **Task 026**: User Governance (Split)
     -   [x] **Task 026.1**: Backend Infra (Power Levels) `[HIGH]`
-    -   [ ] **Task 026.2**: Backend Logic (HAC Rules) `[HIGH]`
-    -   [ ] **Task 026.3**: Backend API `[HIGH]`
+    -   [x] **Task 026.2**: Backend Logic (HAC Rules) `[HIGH]`
+    -   [x] **Task 026.3**: Backend API `[HIGH]`
     - *Why*: Establishes granular control over user permissions and access.
 8.  **Task 022**: DB Performance & Integrity (Indexes/Locking) [DONE]
     - *Why*: Prevents race conditions from day one.
