@@ -46,10 +46,10 @@ Audit all backend unit tests to ensure they are verifying real business rules, n
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] Audit Report (Walkthrough) listing every audited use case.
-- [ ] At least one "Failing Proof of Concept" for a weak test (if found), showing a business rule change that doesn't break the test.
-- [ ] Implementation of improved assertions where gaps are found.
-- [ ] Final confirmation: "Every test asserts the SOUL of the business rule."
+- [x] Audit Report (Walkthrough) listing every audited use case.
+- [x] At least one "Failing Proof of Concept" for a weak test (if found), showing a business rule change that doesn't break the test.
+- [x] Implementation of improved assertions where gaps are found.
+- [x] Final confirmation: "Every test asserts the SOUL of the business rule."
 </acceptance_criteria>
 
 <output>
