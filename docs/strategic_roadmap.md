@@ -92,7 +92,7 @@
 | **12** | `024` | Documentation: API & Seeds | 📝 Docs [DONE] |
 | **13** | `025` | Error Handling: Standardization | 🛡️ Arch [DONE] |
 | **14** | `027` | Audit: Backend Test Quality | [DONE] 🛡️ Arch |
-| **15** | `028.x` | Refinement: Backend Quality (6 sub-tasks) | 🐛 Fix |
+| **15** | `028.x` | Refinement: Backend Quality (6 sub-tasks) | 🐛 Fix [DONE] |
 | **16** | `010.x` | Feature: Catalog (9 sub-tasks) | ✨ Feature |
 | **17** | `011.x` | Feature: Inventory (3 sub-tasks) | ✨ Feature |
 | **18** | `012.x` | Feature: Circulation (4 sub-tasks) | ✨ Feature |
