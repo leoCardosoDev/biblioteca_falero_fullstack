@@ -27,9 +27,9 @@ All `.tsx` files are currently under `src/presentation/{components,pages,context
 </requirements>
 
 <acceptance_criteria>
-- [ ] All `.tsx` files are located within `src/presentation/react`.
-- [ ] Imports use the `@/` alias and are consolidated at layer level.
-- [ ] No build errors after reorganization.
+- [x] All `.tsx` files are located within `src/presentation/react`.
+- [x] Imports use the `@/` alias and are consolidated at layer level.
+- [x] No build errors after reorganization.
 </acceptance_criteria>
 
 <output>
