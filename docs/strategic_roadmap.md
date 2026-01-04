@@ -88,7 +88,11 @@
 | **8** | `023` | Gov: Domain Events | [DONE] 🛡️ Arch |
 | **9** | `016` | Fix: Load Users | 🐛 Fix [DONE] |
 | **10** | `008` | Refactor: Auth Backend | ♻️ Refactor [DONE] |
-| **11** | `009` | Refactor: Auth Frontend (Granular) | ♻️ Refactor |
+| **11** | `009.3` | Refactor: Frontend Feat - List/Detail | 🏗️ In Progress |
+| **12** | `009.4` | Refactor: Frontend Feat - Create | ⏳ Pending |
+| **13** | `009.5` | Refactor: Frontend Feat - Edit | ⏳ Pending |
+| **14** | `009.6` | Refactor: Frontend Feat - Credentials | ⏳ Pending |
+| **15** | `009.7` | Refactor: Frontend Feat - Governance | ⏳ Pending |
 | **12** | `024` | Documentation: API & Seeds | 📝 Docs [DONE] |
 | **13** | `025` | Error Handling: Standardization | 🛡️ Arch [DONE] |
 | **14** | `027` | Audit: Backend Test Quality | [DONE] 🛡️ Arch |
