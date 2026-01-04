@@ -19,6 +19,10 @@ So that **authentication is secure and users can only perform authorized actions
 ## Acceptance Criteria
 - [ ] **Encryption**: Passwords must be hashed (never plain text).
 - [ ] **RBAC Model**: Access is granted via Roles which aggregate Permissions.
+    - **Admin** (System Management)
+    - **Librarian** (Library Management)
+    - **Professor** (Student Management)
+    - **Student** (Reader)
 - [ ] **Separation**: Login entity is separate from User entity.
 - [ ] **Linking**: A Login must be linked to a valid User.
 - [ ] **Lifecycle**: Logins support **Soft Delete** and **Explicit Status** for auditability and quick revocation.
@@ -31,4 +35,4 @@ So that **authentication is secure and users can only perform authorized actions
 - Standard JWT or Session based auth mechanism.
 
 ## Open Questions
-- Default roles? (Admin, Librarian, Visitor).
+- Default roles? **Answered: Admin, Librarian, Professor, Student.**

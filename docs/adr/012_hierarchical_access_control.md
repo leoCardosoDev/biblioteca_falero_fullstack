@@ -12,13 +12,15 @@ We will implement **Hierarchical Scope Validation** (Power Levels) on top of RBA
 
 ### The Hierarchy
 1.  **ADMIN** (Level 100): Full System Access.
-2.  **LIBRARIAN** (Level 50): Operational Management (Book + Member).
-3.  **MEMBER** (Level 10): Consumer (Self Only).
+2.  **LIBRARIAN** (Level 50): Operational Management (Books + Professors + Students).
+3.  **PROFESSOR** (Level 10): Class Management (Students).
+4.  **STUDENT** (Level 0): Consumer (Self Only).
 
 ### The Rules
-1.  **Downward Management**: An actor can only modify subjects with a *lower* Power Level.
+1.  **Downward Management**: An actor can only modify subjects with a *strictly lower* Power Level.
     - `Actor(Admin)` modifies `Target(Librarian)` -> ✅
-    - `Actor(Librarian)` modifies `Target(Member)` -> ✅
+    - `Actor(Librarian)` modifies `Target(Professor)` -> ✅
+    - `Actor(Professor)` modifies `Target(Student)` -> ✅
     - `Actor(Librarian)` modifies `Target(Admin)` -> ❌ (Forbidden)
     - `Actor(Librarian)` modifies `Target(Librarian)` -> ❌ (Forbidden - Peer protection)
 
