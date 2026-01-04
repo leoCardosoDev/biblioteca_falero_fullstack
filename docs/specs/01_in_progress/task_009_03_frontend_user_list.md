@@ -33,3 +33,39 @@ The backend provides endpoints to list and retrieve user details. The frontend n
 - [ ] Update `UserList` component to render the list.
 - [ ] Ensure "View Details" (if any) or simply ensuring existing "Edit" pre-fill works via `loadUserById`.
 </scope>
+
+## 4. Domain & Contracts
+
+### Domain Model (Frontend)
+```typescript
+export interface User {
+  id: string
+  name: string
+  email: string
+  cpf: string
+  status: 'ACTIVE' | 'INACTIVE' | 'BLOCKED'
+  role?: 'ADMIN' | 'LIBRARIAN' | 'PROFESSOR' | 'STUDENT' // flatten from login
+  address?: {
+    cityId: string
+    // ... other address fields
+  }
+}
+```
+
+### API Payloads
+
+**GET /users**
+```json
+[
+  {
+    "id": "uuid",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "status": "ACTIVE",
+    "login": {
+      "role": "STUDENT",
+      "status": "ACTIVE"
+    }
+  }
+]
+```

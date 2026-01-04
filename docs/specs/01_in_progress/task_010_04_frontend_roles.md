@@ -30,3 +30,29 @@ The backend now enforces strict roles (Admin, Librarian, Professor, Student). Th
         - Professor: Purple?
         - Student: Blue?
 </scope>
+
+## 3. Domain & Rules
+
+### Canonical Roles
+```typescript
+export type UserRole = 'ADMIN' | 'LIBRARIAN' | 'PROFESSOR' | 'STUDENT'
+```
+
+### Access Control Rules (Hierarchy)
+- **ADMIN** (100): Can create/manage ALL.
+- **LIBRARIAN** (50): Can create/manage PROFESSOR, STUDENT.
+- **PROFESSOR** (10): Can create/manage STUDENT.
+- **STUDENT** (0): Read-only (Self).
+
+### API Payload (Add User)
+**POST /signup** (or **POST /users**)
+```json
+{
+  "name": "New User",
+  "email": "user@mail.com",
+  "password": "strongPassword",
+  "role": "STUDENT",
+  "cpf": "123.456.789-00"
+}
+```
+*Note: Backend will validate if CurrentUser has power > NewUser role.*
