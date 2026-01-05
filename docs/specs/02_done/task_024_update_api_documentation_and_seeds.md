@@ -20,7 +20,7 @@ Improve technical documentation and facilitate developer/QA onboarding by updati
 
 #### [MODIFY] [manual-api-test.md](../../../backend/manual-api-test.md)
 - [x] Update steps to reflect the separation of Login and User entities.
-- [x] Add specific sections for testing as **ADMIN**, **LIBRARIAN**, and **MEMBER**.
+- [x] Add specific sections for testing as **ADMIN**, **LIBRARIAN**, and **STUDENT**.
 - [x] Update response examples to show full metadata (`status`, `version`).
 
 #### [MODIFY] [manual-api-test-commit.md](../../../backend/manual-api-test-commit.md)
@@ -40,7 +40,7 @@ Improve technical documentation and facilitate developer/QA onboarding by updati
 - [x] Create a single, consolidated seed to insert default users for all roles:
     - **ADMIN**: `admin@falero.com` (CPF: "200.732.960-31")
     - **LIBRARIAN**: `librarian@falero.com` (CPF: "932.712.030-24")
-    - **MEMBER**: `user@falero.com` (CPF: "174.801.310-62")
+    - **STUDENT**: `user@falero.com` (CPF: "174.801.310-62")
 - [x] Implement logic to check for existing users before creation to ensure idempotency.
 
 #### [MODIFY] [package.json](../../../backend/package.json)

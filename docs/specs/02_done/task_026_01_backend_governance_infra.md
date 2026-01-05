@@ -25,7 +25,8 @@ To implement Hierarchical Access Control (HAC), we first need to quantify the "p
     - Update existing roles with correct levels:
         - `ADMIN`: **100**
         - `LIBRARIAN`: **50**
-        - `MEMBER`: **10**
+        - `PROFESSOR`: **10**
+        - `STUDENT`: **0**
 4.  **Verification**:
     - Ensure tests pass with the new field.
 </scope>
@@ -33,6 +34,6 @@ To implement Hierarchical Access Control (HAC), we first need to quantify the "p
 <acceptance_criteria>
 - [ ] **DB Schema**: `roles` table has `power_level` column.
 - [ ] **Entity**: `Role` class has `powerLevel` property.
-- [ ] **Data**: Database seeds/migrations ensure `ADMIN=100`, `LIBRARIAN=50`, `MEMBER=10`.
+- [ ] **Data**: Database seeds/migrations ensure `ADMIN=100`, `LIBRARIAN=50`, `PROFESSOR=10`, `STUDENT=0`.
 - [ ] **Tests**: `Role` unit tests verify the new property.
 </acceptance_criteria>

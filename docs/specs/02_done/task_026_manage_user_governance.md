@@ -12,8 +12,9 @@ You are the BACKEND DEVELOPER (BACKEND-DEV).
 <context>
 We need to enforce a **Hierarchical Access Control** system.
 - **ADMIN**: The Superuser. Can manage ALL roles.
-- **LIBRARIAN**: Operational Manager. Can manage *only* MEMBERS (Users).
-- **MEMBER**: Consumer. Can only manage *self* (Profile).
+- **LIBRARIAN**: Operational Manager. Can manage *only* STUDENTS (Users).
+- **PROFESSOR**: Academic staff.
+- **STUDENT**: Consumer. Can only manage *self* (Profile).
 </context>
 
 <scope>
@@ -21,7 +22,7 @@ We need to enforce a **Hierarchical Access Control** system.
 1.  **Security Logic (Guard)**:
     - Implement `CanManageUser(actor, target)` logic.
     - Rule: `Actor.PowerLevel > Target.PowerLevel`.
-    - Power Levels: ADMIN (100) > LIBRARIAN (50) > MEMBER (10).
+    - Power Levels: ADMIN (100) > LIBRARIAN (50) > PROFESSOR (10) > STUDENT (0).
     
 2.  **UseCases**:
     - `BlockUser`:
