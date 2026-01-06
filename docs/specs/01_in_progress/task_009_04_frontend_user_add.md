@@ -19,11 +19,16 @@ Admin/Librarians need to register new users (Students, Teachers, etc.).
 <scope>
 ## 1. Data Layer
 - [ ] Implement `RemoteAddUser` (HttpAdapter -> POST /users).
-- [ ] Payload: Name, Email, RG, CPF, Gender, Phone, Address (optional), Status (defaults ACTIVE in backend).
+- [ ] Implement `RemoteLoadAddressByZipCode` (HttpAdapter -> GET /addresses/cep/:zipCode).
+- [ ] Payload (Add User): 
+    - Name, Email, RG, CPF, Gender, Phone.
+    - Address (Optional but recommended):
+        - `zipCode`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`.
+        - `neighborhoodId`, `cityId` (auto-filled from ZipCode lookup).
 
 ## 2. Main Layer
-- [ ] Create `makeRemoteAddUser` factory.
-- [ ] Inject into `UserList` factory.
+- [ ] Create `makeRemoteAddUser` and `makeRemoteLoadAddressByZipCode` factories.
+- [ ] Inject into `UserList` / `UserForm` factory.
 
 ## 3. Presentation Layer
 - [ ] Update `UserForm` to collect strict fields.

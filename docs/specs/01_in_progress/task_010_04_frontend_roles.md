@@ -33,26 +33,33 @@ The backend now enforces strict roles (Admin, Librarian, Professor, Student). Th
 
 ## 3. Domain & Rules
 
+### API Payload & Flow (Add Privileged User)
+Since `POST /users` does not set credentials or role, and `POST /users/:id/login` defaults to STUDENT, creating a Librarian/Professor requires a sequence:
+
+1.  **Create Profile**: `POST /users`
+    ```json
+    { "name": "...", "email": "...", "cpf": "..." }
+    ```
+    *(Returns `id`)*
+
+2.  **Create Login**: `POST /users/:id/login`
+    ```json
+    { "password": "StrongPassword123!" }
+    ```
+    *(Defaults to Role: STUDENT)*
+
+3.  **Promote Role**: `PATCH /users/:id/role`
+    ```json
+    { "roleId": "UUID" } // Check if backend expects ID or Slug. 
+    // Backend Implementation of `updateUserRoleSchema` expects `roleId` (UUID).
+    // Frontend must lookup Role ID by Slug first? Or does backend accept Slug?
+    // Wait, updateUserRoleSchema says roleId: string (uuid).
+    // Frontend needs to fetch Roles list first to get IDs for 'ADMIN', 'LIBRARIAN' etc.
+    ```
+    *Note: Frontend must fetch available Roles to map Slug -> ID.*
+
 ### Canonical Roles
 ```typescript
 export type UserRole = 'ADMIN' | 'LIBRARIAN' | 'PROFESSOR' | 'STUDENT'
 ```
-
-### Access Control Rules (Hierarchy)
-- **ADMIN** (100): Can create/manage ALL.
-- **LIBRARIAN** (50): Can create/manage PROFESSOR, STUDENT.
-- **PROFESSOR** (10): Can create/manage STUDENT.
-- **STUDENT** (0): Read-only (Self).
-
-### API Payload (Add User)
-**POST /signup** (or **POST /users**)
-```json
-{
-  "name": "New User",
-  "email": "user@mail.com",
-  "password": "strongPassword",
-  "role": "STUDENT",
-  "cpf": "123.456.789-00"
-}
-```
-*Note: Backend will validate if CurrentUser has power > NewUser role.*
+*Note: Backend `UserRole` value object normalizes to UPPERCASE.*
