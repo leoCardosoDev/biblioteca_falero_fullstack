@@ -14,6 +14,8 @@ Admins need to update user information.
 
 <endpoints>
 - `PUT /users/:id`
+- `GET /cities/:id` (Lookup city by ID - Cached)
+- `GET /states/:id` (Lookup state by ID - Cached)
 </endpoints>
 
 <scope>
