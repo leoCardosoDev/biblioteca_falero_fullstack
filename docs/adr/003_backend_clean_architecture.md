@@ -1,64 +1,69 @@
-# <role>
-# You are the SOFTWARE ARCHITECT (ARC).
-# </role>
+# ADR 003: Inner Module Architecture Standard
 
-<architecture_decision>
-## Problem
-The Backend application is growing, and we observe an implicit structure of folders (`domain`, `infra`, `presentation`, `main`). However, there is no explicit record defining the architectural pattern, leading to potential future violations (e.g., Domain layer depending on Infrastructure). We need to formalize the architecture to ensure consistency and maintainability.
+## Status
+Accepted
 
-## Drivers
-- **Independence of Frameworks**: The architecture does not depend on the existence of some library of feature laden software.
-- **Testability**: The business rules can be tested without the UI, Database, Web Server, or any other external element.
-- **Independence of UI**: The UI can change easily, without changing the rest of the system.
-- **Independence of Database**: You can swap Oracle or SQL Server, for Mongo, BigTable, CouchDB, or something else. Your business rules are not bound to the database.
+## Context
+The application follows a **Modular Monolith** architecture (defined in [ADR 013](013_modular_monolith_clean_architecture.md)).
+While ADR 013 defines the high-level physical organization (`src/modules/<context>`), it is necessary to mandate exactly how code is organized *inside* each module to prevent structural decay ("Distributed Monolith" or "Spaghetti Code").
 
-## Solution
-We explicitly adopt **Clean Architecture** (Robert C. Martin) for the Backend.
+Previous approaches allowed for loose interpretation of layers, leading to inconsistent folder structures across modules. A deterministic standard is required to ensure traversability and maintainability.
 
-### Layers defined:
+## Decision
+Every Bounded Context module located in `src/modules/` **MUST** strictly adhere to the following 4-layer Clean Architecture structure.
+Existing layers are MANDATORY unless the module is a "Shared Kernel" (which may have a simplified structure).
 
-1.  **Domain Layer** (`src/domain`):
-    -   **Enterprise Business Rules** (Entities).
-    -   **Application Business Rules** (Use Cases).
-    -   *Rule*: MUST NOT depend on any other layer. Pure TypeScript.
+### 1. The Structure
+Inside `src/modules/<module-name>/`:
 
-2.  **Application Layer** (`src/application`? or mixed in `data/usecases`?):
-    -   *Current Codebase Note*: Seems to be implemented as `data` layer implementing UseCases.
-    -   We define **Data/Application** layer as the implementation of UseCases that coordinate data flow.
-    -   *Rule*: Depends ONLY on Domain.
-
-3.  **Infrastructure Layer** (`src/infra`):
-    -   **Frameworks & Drivers**: Database access (Prisma/TypeORM/Mongo), Cryptography, External APIs.
-    -   *Rule*: Implements interfaces defined in Domain/Application.
-
-4.  **Presentation Layer** (`src/presentation`):
-    -   **Interface Adapters**: Controllers, Presenters, ViewModels.
-    -   *Rule*: Receives Requests, calls UseCases, returns Responses. Depends on Domain.
-
-5.  **Main Layer** (`src/main`):
-    -   **Composition Root**: Factories, Adapters, Configuration.
-    -   *Rule*: The "Dirty Layer". It knows everything and injects dependencies. connect `infra` into `presentation`.
-
-## Diagram
-```mermaid
-graph TD
-    Main --> Presentation
-    Main --> Infra
-    Main --> Data
-    Main --> Domain
-    
-    Presentation --> Domain
-    Infra --> Data
-    Data --> Domain
+```text
+/domain         <-- Enterprise Logic (The Core)
+/application    <-- functionality (Use Cases)
+/presentation   <-- Interface Adapters (HTTP/Console)
+/infra          <-- Detail Implementations (DB/External)
 ```
 
-## Consequences
-- **Positive**: High testability, separation of concerns, flexibility to switch libraries.
-- **Negative**: High file count, boilerplate code (Interfaces, DTOs, Factories).
-</architecture_decision>
+### 2. Layer Definitions & Rules
 
-<technical_constraints>
-- **Dependency Rule**: Source code dependencies must only point inward, toward higher-level policies.
-- **Factories**: All object creation and wiring MUST happen in `src/main/factories`.
-- **Adapters**: Use Adapters to decouple Protocol/Framework (Fastify/Express) from Controllers.
-</technical_constraints>
+#### A. Domain Layer (`src/modules/<module>/domain`)
+*   **Responsibility**: Encapsulate Enterprise Business Rules.
+*   **Contents**: Entities, Value Objects, Domain Services, Domain Events, Repository Interfaces (contracts).
+*   **Dependencies**: **ZERO**. Must be pure TypeScript. No references to external libraries (ORM, HTTP, Frameworks).
+*   **Enforcement**: Use `eslint-plugin-boundaries` to ban all imports except standard library.
+
+#### B. Application Layer (`src/modules/<module>/application`)
+*   **Responsibility**: Application specific business rules. Orchestra data flow.
+*   **Contents**: Use Cases (Service Classes), DTOs (Input/Output), Gateway Interfaces (Contracts for Infra).
+*   **Dependencies**: Depends ONLY on **Domain**.
+*   **Enforcement**: CANNOT import from `presentation` or `infra`.
+
+#### C. Presentation Layer (`src/modules/<module>/presentation`)
+*   **Responsibility**: Adapt external input (HTTP Requests, CLI) to Application Use Cases.
+*   **Contents**: Controllers, Presenters, ViewModels, Validation Composites.
+*   **Dependencies**: Depends on **Application** (to call Use Cases) and **Domain** (for Types).
+*   **Enforcement**: MUST NOT implement business logic. MUST NOT access Database directly.
+
+#### D. Infrastructure Layer (`src/modules/<module>/infra`)
+*   **Responsibility**: Implement interfaces defined in Domain/Application.
+*   **Contents**: Repositories (TypeORM/Prisma), Adapters (Bcrypt, JWT), External API Clients.
+*   **Dependencies**: Depends on **Domain** (Entities) and **Application** (Repository Interfaces).
+*   **Enforcement**: This is the ONLY layer allowed to import low-level drivers (database drivers, crypto libs).
+
+### 3. Dependency Rule
+**Source Code Dependencies MUST always point inward.**
+*   `Infra` -> `Application` -> `Domain`
+*   `Presentation` -> `Application` -> `Domain`
+
+## Consequences
+
+### Positive
+*   **Consistency**: Every module looks the same. A developer moving from "Identity" to "Catalog" sees the exact same folder structure.
+*   **Testability**: Domain and Application layers are 100% unit-testable without mocking complex infrastructure.
+*   **Isolation**: Frameworks (Fastify, TypeORM) are confined to the outer edges (`infra`, `presentation`).
+
+### Negative
+*   **Boilerplate**: Simple CRUD operations require 4 layers of files (Controller -> UseCase -> Repository Interface -> Repository Implementation).
+*   **Rigidity**: "Quick hacks" are explicitly forbidden by the directory structure.
+
+## Compliance
+**Automated Enforcement**: CI pipeline must reject any Pull Request that introduces files outside this folder structure within `src/modules/`.

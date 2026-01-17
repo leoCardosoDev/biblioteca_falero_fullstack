@@ -1,51 +1,40 @@
-# ADR 009: Mature Data Architecture (Integrity & Governance)
+# ADR 009: Mature Data Architecture Standards
 
 ## Status
 Accepted
 
 ## Context
-The system requires a mature data strategy to ensure long-term maintainability, auditability, and performance.
-- **Problem**:
-  - Hard deletes cause data loss and break history.
-  - Implicit states (e.g., inferring "Open" loan by null return date) cause bugs.
-  - Lack of concurrency control (locking) risks data overwrites.
-  - Missing indexes hurt scale.
-  - Domain events are needed for decoupling side effects.
+To ensure enterprise-grade data integrity and prevent "Lost Updates" or accidental data destruction, we enforce strict data governance patterns.
 
 ## Decision
-We will verify and enforce the following patterns across the persistence layer:
+We enforce the following **Data Integrity Patterns** on all Aggregate Roots.
 
 ### 1. Soft Delete
-**Rule**: Business entities are never physically deleted.
-**Mechanism**: `deleted_at DATETIME NULL`.
-**Target**: `user`, `login`, `unit`, `work`, `work_copy`, `loan`, `reservation`.
-**Reason**: Audit requirement ("data never disappears").
+**Rule**: Physical `DELETE` operations are **FORBIDDEN** on Business Aggregates.
+**Mechanism**:
+*   Column: `deleted_at` (Nullable DateTime).
+*   Logic: `NULL` = Active. `Timestamp` = Deleted.
+**Target**: `User`, `Login`, `Unit`, `Work`, `WorkCopy`, `Loan`.
+**Exemption**: Link tables (e.g., `RolePermission`) may use physical delete if they represent pure relationships.
 
-### 2. Explicit Status
-**Rule**: Core states must be explicit Enums, not inferred values.
-**Targets**:
-- `Loan`: OPEN, CLOSED, OVERDUE.
-- `User`: ACTIVE, INACTIVE, BLOCKED.
+### 2. Optimistic Locking (Concurrency Control)
+**Rule**: All Aggregate Roots MUST implement versioning to prevent race conditions.
+**Mechanism**:
+*   Column: `version` (Integer, Default 1).
+*   Logic: `UPDATE ... SET version = version + 1 WHERE id = ? AND version = ?`.
+*   Failure: If rows affected = 0, throw `ConcurrencyError`.
+**Target**: `WorkCopy` (Inventory), `Loan` (Status), `User` (Profile).
 
-### 3. Concurrency Control (Optimistic Locking)
-**Rule**: Prevent "Lost Update" problem on aggregates.
-**Mechanism**: `version INT DEFAULT 0`.
-**Target**: All Aggregate Roots (`User`, `Work`, `Loan`, `Unit`).
-
-### 4. Strategic Indexing
-**Rule**: Index foreign keys and status columns used in high-frequency filters.
-
-### 5. Domain Events
-**Rule**: Persist domain events to a local table before/during transaction commit for audit and future async processing.
-**Mechanism**: `domain_event` table.
+### 3. Explicit Enum States
+**Rule**: State MUST be explicit, never inferred.
+*   **Bad**: `is_returned = true`
+*   **Good**: `status = 'RETURNED'` (Enum).
+*   **Reason**: Enables future states (`LOST`, `DAMAGED`) without schema changes.
 
 ## Consequences
-### Positive
-- **Safety**: Accidental deletes are reversible; history is preserved.
-- **Clarity**: Status is readable and consistent.
-- **Reliability**: Race conditions are prevented by versioning.
-- **Extensibility**: Domain events capture side effects.
+*   **Reliability**: Eliminates race conditions in high-concurrency scenarios.
+*   **Audit**: Preserves history of deleted items.
 
-### Negative
-- **Complexity**: All queries must filter `deleted_at IS NULL`.
-- **Storage**: Tables grow indefinitely (requires archiving strategy simpler via soft delete).
+## Compliance
+Repositories MUST automatically handle `deleted_at` filtering.
+TypeORM/Prisma usage MUST enable version columns.

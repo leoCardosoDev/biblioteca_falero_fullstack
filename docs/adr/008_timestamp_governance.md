@@ -1,65 +1,40 @@
-# ADR 008: Timestamp & Auditing Strategy (DDD & Governance)
+# ADR 008: Timestamp Governance Policy
 
 ## Status
 Accepted
 
 ## Context
-The system requires a clear definition of where and why to use `created_at` and `updated_at` timestamps.
-- **Problem**: Indiscriminate use of timestamps creates noise in static tables and misses audit trails in critical entities.
-- **Goal**: Apply timestamps strictly where there is **relevant state change** or **audit requirements**.
-- **Principle**: Timestamps are an audit tool, not decoration.
+Inconsistent usage of `created_at` and `updated_at` timestamps creates audit gaps and database noise.
+We must deterministically define which entities require temporal tracking.
 
 ## Decision
-We categorize entities into four levels regarding timestamp usage:
+We enforce the following **Timestamp Classification Categories**.
 
-### 1. Mandatory (Business Entities / Aggregate Roots)
-**Rule**: Must have `created_at` and `updated_at`.
-- **Entities**:
-  - `user` (profile changes)
-  - `unit` (location/contact changes)
-  - `login` (security lifecycle)
-  - `work` (catalog corrections)
-  - `work_copy` (status/maintainance)
-  - `loan` (lifecycle evolution)
-  - `reservation` (fulfillment status)
-  - `maintenance` (audit trail)
+### 1. MANDATORY (Business Entities)
+**Rule**: MUST have `created_at` AND `updated_at`.
+**Scope**: All Aggregate Roots and Mutable Entities.
+*   `User`, `Login`, `Unit`, `Work`, `WorkCopy`, `Loan`, `Reservation`, `Maintenance`.
+*   **Reason**: Full audit trail of lifecycle is required.
 
-### 2. Recommended (Control & Governance)
-**Rule**: Recommended `created_at` and `updated_at` (especially `updated_at` for role/permissions).
-- **Entities**:
-  - `role`
-  - `permission`
-  - `role_permission`
+### 2. RECOMMENDED (Security & Control)
+**Rule**: MUST have `created_at`. `updated_at` is Recommended.
+**Scope**: Configuration Entities.
+*   `Role`, `Permission`, `RolePermission`.
 
-### 3. Optional (Technical/Value Objects)
-**Rule**: `created_at` only (soft requirement), or none.
-- **Entities**:
-  - `neighborhood` (created on demand)
-  - `city` (stable data)
-
-### 4. Forbidden / Unnecessary (Static Lookups)
-**Rule**: No timestamps. These are immutable catalogues.
-- **Entities**:
-  - `state`
-  - `genre`
-  - `language`
-  - `work_type`
-  - `location` (physical shelves/aisles - rarely move)
-  - `author`
-  - `publisher`
+### 3. FORBIDDEN (Static Catalogues)
+**Rule**: MUST NOT have timestamps.
+**Scope**: Immutable Domain Constants / Lookups.
+*   `State`, `Genre`, `Language`, `WorkType`, `Author`, `Publisher`.
+*   **Reason**: These are reference data. If they change, it is a migration event, not a runtime update. "Noise Reduction".
 
 ## Implementation Standard
-```sql
-created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-updated_at DATETIME NULL ON UPDATE CURRENT_TIMESTAMP
-```
-(Or equivalent TypeORM decorators `@CreateDateColumn` and `@UpdateDateColumn`)
+All Timestamp columns MUST use the server usage time (UTC).
+*   **TypeORM**: `@CreateDateColumn()`, `@UpdateDateColumn()`.
+*   **SQL**: `DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP`.
 
 ## Consequences
-### Positive
-- **Clarity**: Developers know exactly when to add timestamps.
-- **Performance**: Reduces storage/indexing overhead on static tables.
-- **Semantics**: The schema reflects the "liveness" of the data.
+*   **Clarity**: DB Schema reviews are deterministic.
+*   **Performance**: Reduced storage for static tables.
 
-### Negative
-- **Inconsistency**: Not every table has the same columns (intentional divergence).
+## Compliance
+Schema migrations violating these rules will be rejected in Code Review.

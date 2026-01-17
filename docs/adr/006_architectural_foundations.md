@@ -1,45 +1,51 @@
-# ADR 006: Strategic Domain Design & Global Conventions
+# ADR 006: Strategic Context Map & Foundations
 
 ## Status
 Accepted
 
 ## Context
-The project requires a scalable, enterprise-grade architecture capable of growing without technical debt. Previous iterations had mixed naming conventions (English/Portuguese) and loose domain boundaries. The database schema has been refactored to support a strict DDD approach.
+To ensure the **Modular Monolith** remains modular, we must explicitly define the Bounded Contexts and their relationships. Ambiguity in domain boundaries leads to logic leakage and entanglement.
+We also establish the **language** of the code to prevent "Spanglish" debt.
 
 ## Decision
-We explicitly adopt the following **3 Pillars of Architecture**:
+We enforce the following Strategic Design decisions.
 
-### 1. DDD First (Strategic Design)
-The system is divided into strict **Bounded Contexts** to decouple complexity. Using the *Shared Kernel* pattern for common structures.
+### 1. The Context Map (Modules)
+The application is composed of the following **Immutable Bounded Contexts**:
 
-#### Context Map
-*   **Geography (Shared Kernel)**: State, City, Neighborhood.
-*   **User (Identity)**: Person data, Address (VO), independent of credentials.
-*   **Access Control (Auth)**: Login, Role, Permission (RBAC).
-*   **Unit**: Physical libraries/schools.
-*   **Catalog**: Bibliographic data (Work, Author, Publisher).
-*   **Inventory**: Physical copies (WorkCopy).
-*   **Circulation**: Loans and Reservations.
-*   **Communication**: Messages/Support.
+| Module Name | Responsibilities | Key Aggregates |
+| :--- | :--- | :--- |
+| **Identity** | Civil Identity, Personal Data | `User`, `Address` (VO) |
+| **AccessControl** | AuthN, AuthZ, Security | `Login`, `Role`, `Permission` |
+| **Geography** | Locations, Regional Data | `State`, `City`, `Neighborhood` |
+| **Catalog** | Bibliographic Management | `Work`, `Author`, `Publisher`, `Subject` |
+| **Inventory** | Physical Assets | `WorkCopy` (The Book item) |
+| **Circulation** | Lending & Returns | `Loan`, `Reservation` |
+| **Unit** | Library Branches | `Unit` |
 
-### 2. Ubiquitous Language (English Only)
-All code, database tables, columns, enums, files, and documentation (where possible/technical) MUST use **English**.
-*   *Tables*: `user`, `role`, `permission` (NOT `usuario`, `grupo`).
-*   *Code*: `UserService`, `LoanRepository` (NOT `UsuarioService`).
-*   *Reasoning*: Unifies the codebase, standardizes library usage, and aligns with international standards.
+**Rule**: Any new feature must fit into one of these contexts. If it does not, a new Context must be proposed via RFC/ADR.
 
-### 3. Rich Domain Models & Value Objects
-We reject "Anemic Models". Validations and business logic reside in the Domain Entities and Value Objects (VO).
+### 2. Ubiquitous Language
+**ENGLISH ONLY**.
+*   All code (Classes, Variables, Database Tables, Columns) **MUST** be in English.
+*   **Forbidden**: `Usuario`, `Livro`, `Emprestimo`.
+*   **Mandatory**: `User`, `Work`/`Book`, `Loan`.
+*   **Reason**: Consistency and international standard.
 
-#### Address as a Value Object
-*   Address is NOT an entity. It does not have an ID.
-*   It is embedded in aggregates (User, Unit) as a set of columns (`address_street`, `address_number`, etc.).
-*   *Implication*: We do not have an `addresses` table. We treat address as an immutable property of the root entity.
-
-#### Other VOs
-*   `CPF`, `CNPJ`, `Email`, `ISBN` are Value Objects with self-validation regex logic.
+### 3. Shared Kernel Strategy
+We use a **Shared Kernel** (`src/shared`) for:
+*   **True Generic Code**: `Either` pattern, `AppError`, `Entity` base class.
+*   **Cross-Cutting Concerns**: `Logger`, `DateProvider`.
+*   **Bounded Contexts that became Generic**: `Geography` is largely a lookup service used by everyone, so it sits on the boundary of a distinct module and a Shared Kernel service.
 
 ## Consequences
-*   **Consistency**: No more guessing if a table is `tb_usuario` or `users`.
-*   **Maintainability**: Bounded contexts allow teams to work in parallel without stepping on toes (e.g., Catalog team vs Circulation team).
-*   **Performance**: Embedding Value Objects (Address) avoids unnecessary joins.
+
+### Positive
+*   **Clarity**: Everyone knows where code belongs. "Book ISBN" -> Catalog. "Book Barcode" -> Inventory.
+*   **Parallelism**: Teams can own specific contexts.
+
+### Negative
+*   **Integration**: Features crossing boundaries (e.g., "Loan a Book") require orchestration (Use Cases in Main or overarching Sagas).
+
+## Compliance
+**Strict Enforcement**: Database tables must follow the naming convention (snake_case, English). No `creation_data` (Portuguese mix) -> `created_at`.

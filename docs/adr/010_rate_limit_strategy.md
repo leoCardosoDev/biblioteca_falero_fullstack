@@ -1,47 +1,32 @@
-# <role>
-# You are the SOFTWARE ARCHITECT (ARC).
-# </role>
+# ADR 010: Rate Limit Strategy
 
-<architecture_decision>
-## Problem
-The system requires protection against Brute Force attacks on the login endpoint (`/login`). We need to determine where to store the attempt count (state) to enforce blocking.
+## Status
+Accepted
 
-## Drivers
-- **Security**: Prevent credential stuffing and brute force.
-- **Simplicity**: Avoid complex infrastructure for the initial phase.
-- **Performance**: Low latency for checking attempts.
+## Context
+Protection against Brute Force attacks is a non-functional requirement. It must not pollute Domain or Application layers.
 
-## Solution
-We choose to use **In-Memory Storage** via the `@fastify/rate-limit` library.
+## Decision
+We enforce **Rate Limiting** as an Infrastructure Concern.
 
-## Diagram
-```mermaid
-graph TD
-    User -->|POST /login| RateLimit[Rate Limit Middleware]
-    RateLimit -- Access Granted --> Controller[LoginController]
-    RateLimit -- Limit Exceeded --> 429[429 Too Many Requests]
-    
-    subgraph "Memory Store"
-    RateLimit -.->|Read/Write IP Count| RAM
-    end
-```
+### 1. Location
+*   **Layer**: `src/main/adapters/` or `src/main/middlewares/`.
+*   **Mechanism**: Fastify/Express Middleware.
+
+### 2. Strategy
+*   **Driver**: In-Memory (Phase 1) -> Redis (Phase 2).
+*   **Scope**:
+    *   **Strict**: `/login`, `/signup` (5 req / min).
+    *   **Loose**: Public API (100 req / min).
+
+### 3. Dependency Rule
+*   Controllers **MUST NOT** contain rate limit logic.
+*   Use Cases **MUST NOT** contain rate limit logic.
+*   The `Main` layer composition root applies the middleware to the routes.
 
 ## Consequences
-- **Positive**:
-    - **KISS**: Zero external dependencies (no Redis required yet).
-    - **Speed**: Immediate implementation and fast lookup.
-- **Negative**:
-    - **Scalability**: State is not shared between replicas. If scaled to N instances, the effective limit is N * Limit.
-    - **Volatile**: Restarts clear the limits (acceptable for login security).
+*   **Cleanliness**: Business logic remains pure.
+*   **Switchability**: Switching to Redis is a config change in `src/main`.
 
-## Mitigation
-We accept the scalability risk for the current phase. If/When we migrate to Kubernetes with multiple replicas, we MUST change the Rate Limit driver to Redis (Future ADR).
-</architecture_decision>
-
-<technical_constraints>
-- **Library usage**: `@fastify/rate-limit`
-- **Configuration**:
-    - Window: 1 minute
-    - Max: 10 attempts
-- **Scope**: Apply primarily to `/login` and public routes.
-</technical_constraints>
+## Compliance
+Any reference to "Rate Limit" inside `src/modules` is **FORBIDDEN**.

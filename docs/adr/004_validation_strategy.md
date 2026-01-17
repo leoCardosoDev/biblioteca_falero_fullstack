@@ -1,74 +1,49 @@
-# <role>
-# You are the SOFTWARE ARCHITECT (ARC).
-# </role>
+# ADR 004: Validation Strategy
 
-<architecture_decision>
-## Problem
-Controllers often become bloated with validation logic (checking required fields, email formats, etc.), violating the Single Responsibility Principle. We need a standard way to handle validation that is reusable, testable, and decoupled from the specific HTTP framework or Controller logic.
+## Status
+Accepted
 
-## Drivers
-- **SRP**: Controllers should only handle HTTP concerns, not validation rules.
-- **Reusability**: Validation rules (e.g., "Email is valid") should be reusable across different controllers.
-- **Open/Closed**: It should be easy to add new validation rules without modifying existing code.
+## Context
+Validation logic often leaks into Controllers, causing code duplication and Single Responsibility Principle violations.
+We must distinguish between **Structural Validation** (HTTP Layer) and **Semantic Validation** (Domain Layer).
 
-## Solution
-We implement a **Validation Composite** pattern in the `presentation` layer.
+## Decision
+We enforce a strict **Two-Tier Validation Strategy**.
 
-1.  **Protocol**: Define a `Validation` interface.
-    ```typescript
-    export interface Validation {
-      validate: (input: any) => Error
-    }
-    ```
+### 1. Presentation Layer: Structural Validation
+**Pattern**: Validation Composite.
+*   **Responsibility**: Ensure the input *shape* is correct (Required fields, types, basic format).
+*   **Location**: `src/modules/<module>/presentation/validation/`
+*   **Mandatory Class**: `ValidationComposite`.
+    *   Iterates over a list of `Validation` implementations.
+    *   Returns the first error found or null.
+*   **Forbidden**: Business logic checks (e.g., "User exists") are forbidden here.
 
-2.  **Validators**: Implement small, specific classes implementing this interface.
-    -   `RequiredFieldValidation`
-    -   `CompareFieldsValidation`
-    -   `ValueObjectAdapterValidation` (Wraps Domain VOs like `Email`, `CPF` to ensure format consistency with Domain).
+### 2. Domain Layer: Semantic Validation
+**Pattern**: Value Objects & Entities.
+*   **Responsibility**: Ensure the data *integrity* and business rules.
+*   **Location**: `src/modules/<module>/domain/value-objects/`
+*   **Mechanism**: Instantiation Logic.
+    *   `Email.create('invalid')` -> throws `InvalidEmailError` or returns `Left(InvalidEmailError)`.
+    *   Entities validate their state invariants.
 
-3.  **Composite**: A `ValidationComposite` class that takes an array of `Validation` objects and runs them sequentially.
-    -   If any fails, it returns the error immediately.
-    -   If all pass, it returns null.
-
-4.  **Factory**: Validation instances are composed in the `main` layer factories and injected into Controllers.
-
-## Diagram
-```mermaid
-classDiagram
-    class Validation {
-        <<interface>>
-        +validate(input: any): Error
-    }
-    class ValidationComposite {
-        -validations: Validation[]
-        +validate(input: any): Error
-    }
-    class RequiredFieldValidation {
-        -fieldName: string
-        +validate(input: any): Error
-    }
-    class EmailValidation {
-        -fieldName: string
-        -emailValidator: EmailValidator
-        +validate(input: any): Error
-    }
-    
-    Validation <|.. ValidationComposite
-    Validation <|.. RequiredFieldValidation
-    Validation <|.. ValueObjectAdapterValidation
-    ValidationComposite o-- Validation
-```
-
-## Strategic Alignment
-With the adoption of **ADR 006 (Rich Domain Models)**, validation logic regarding *format* (e.g., valid email, valid CPF) MUST reside in the Domain (Value Objects).
-The Presentation layer validators should acts as Adapters or simple structural checks (Required Field), deferring complex rules to the Domain to avoid "Anemic Model" anti-pattern.
+### 3. Interaction
+Controllers **MUST** inject a `Validation` instance.
+1.  Controller calls `this.validation.validate(httpRequest.body)`.
+2.  If error -> Return `400 Bad Request`.
+3.  If success -> Call `UseCase`.
+4.  `UseCase` instantiates Domain Objects.
+5.  If Domain Object creation fails -> Return `400 Bad Request` (mapped).
 
 ## Consequences
-- **Positive**: perfectly clean controllers, easy to unit test validators in isolation.
-- **Negative**: More classes to create for simple validations.
-</architecture_decision>
 
-<technical_constraints>
-- **No external libs in Presentation**: Validators should not depend directly on libs like `joi` or `zod` inside the presentation layer. If using them, wrap them in an Adapter.
-- **Controller Injection**: Controllers MUST receive a `Validation` instance in their constructor.
-</technical_constraints>
+### Positive
+*   **SRP**: Controllers are clean.
+*   **Safety**: Impossible to instantiate a Domain Object with invalid state.
+
+### Negative
+*   **Boilerplate**: Requires defining validation classes.
+
+## Compliance
+New endpoints **MUST** implement `ValidationComposite`.
+Direct `if (!body.email)` checks in Controllers are **FORBIDDEN**.
