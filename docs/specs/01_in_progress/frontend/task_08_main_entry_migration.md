@@ -60,11 +60,11 @@ Wire it all together.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] Application successfully builds.
-- [ ] Navigating to `/login` renders the Identity Placeholder.
-- [ ] Navigating to `/locations` renders the Geography Placeholder.
-- [ ] 404 works for unknown routes.
-- [ ] Providers are active (verify via DevTools).
+- [x] Application successfully builds.
+- [x] Navigating to `/login` renders the Identity Placeholder.
+- [x] Navigating to `/locations` renders the Geography Placeholder.
+- [x] 404 works for unknown routes.
+- [x] Providers are active (verify via DevTools).
 </acceptance_criteria>
 
 <output>
