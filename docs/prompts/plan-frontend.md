@@ -1,6 +1,6 @@
 ## Implementation Plan from Spec
 
-> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_07_geography_module_skeleton.md`** and produce a **detailed implementation plan**.
+> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_08_main_entry_migration.md`** and produce a **detailed implementation plan**.
 >
 > **STEP 1 — Read mandatory documents:**
 >
