@@ -12,6 +12,9 @@ SOFTWARE ARCHITECT & PDA
 </dependent_tasks>
 
 <context>
+- **Task 01 Summary**: Established Modular Monolith skeleton and architectural boundaries.
+- **Task 02 Summary**: Implemented UI Foundation with Tailwind and polymorphic Button primitive.
+- **Task 03 Summary**: Implemented Server State Infra (Axios Adapter as Class, TanStack Query). Established rule for mandatory Adapters for 3rd party libs and Test Mirroring.
 - We need a solution for **Global Client State** (UI State, Session Tokens, User Preferences).
 - **Zustand** is chosen for its simplicity and atomic updates (ADR-015).
 - We must avoid "Polluting" the store with Server Data (use Query for that).
@@ -36,6 +39,10 @@ Establish the Global Store.
 
 3. **DevTools**:
     - Wrap with `devtools` middleware for debugging.
+
+4. **Standards Enforcement**:
+    - **Adapter Pattern**: Wrap `zustand` to ensure it is easily replaceable and contained within Infra/Shared.
+    - **Test Location**: Tests must be created in `app/frontend/tests/shared/store/` mirroring the implementation path.
 </scope>
 
 <requirements>
@@ -53,10 +60,12 @@ Establish the Global Store.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `useAppStore` hook is exported.
-- [ ] Can set and retrieve `theme`.
-- [ ] Session token persists after page reload (Simulate with console).
-- [ ] TypeScript types for the Store are comprehensive.
+- [x] `useAppStore` hook is exported.
+- [x] Can set and retrieve `theme`.
+- [x] Session token persists after page reload (Simulate with console).
+- [x] TypeScript types for the Store are comprehensive.
+- [x] Tests mirror the source path in `app/frontend/tests/`.
+- [x] 3rd party lib usage is wrapped by an Adapter.
 </acceptance_criteria>
 
 <output>

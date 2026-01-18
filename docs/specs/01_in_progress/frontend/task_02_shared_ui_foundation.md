@@ -12,6 +12,7 @@ SOFTWARE ARCHITECT & PDA
 </dependent_tasks>
 
 <context>
+- **Task 01 Summary**: Successfully initialized the Frontend Modular Monolith skeleton. Path aliases (`@/modules`, `@/shared`, `@/main`) are configured and strict architectural boundaries are enforced via ESLint. Inter-module private imports are now forbidden, and `shared` is isolated.
 - We need a professional, accessible, and theme-able UI foundation.
 - Per ADR-015, we are using a **Hybrid** approach:
     - **Tailwind CSS** for low-level styling and layout.
@@ -53,11 +54,11 @@ Establish the design system kernel.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `cn` utility is implemented and strictly typesafe.
-- [ ] `Button` component accepts `className` override and merges it using `cn`.
-- [ ] `import { Button } from '@/shared/ui'` works.
-- [ ] Tailwind Intellisense is working (by verifying config presence).
-- [ ] Build includes unified CSS file.
+- [x] `cn` utility is implemented and strictly typesafe.
+- [x] `Button` component accepts `className` override and merges it using `cn`.
+- [x] `import { Button } from '@/shared/ui'` works.
+- [x] Tailwind Intellisense is working (by verifying config presence).
+- [x] Build includes unified CSS file.
 </acceptance_criteria>
 
 <output>

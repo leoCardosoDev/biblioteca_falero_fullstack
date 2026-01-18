@@ -64,11 +64,11 @@ Detailed architectural setup requirements.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] Directory structure `src/modules`, `src/shared`, `src/main` exists.
-- [ ] Path Aliases (`@/modules`, `@/shared`) work in a test file.
-- [ ] `npm run lint` **FAILS** if a file in `src/modules/A` imports `src/modules/B/domain/entity.ts` (Private access violation).
-- [ ] `npm run lint` **PASSES** if a file in `src/modules/A` imports `src/modules/B/public/index.ts` (Public API access).
-- [ ] `npm run lint` **FAILS** if `src/shared` imports `src/modules/A` (Dependency Inversion violation).
+- [x] Directory structure `src/modules`, `src/shared`, `src/main` exists.
+- [x] Path Aliases (`@/modules`, `@/shared`) work in a test file.
+- [x] `npm run lint` **FAILS** if a file in `src/modules/A` imports `src/modules/B/domain/entity.ts` (Private access violation).
+- [x] `npm run lint` **PASSES** if a file in `src/modules/A` imports `src/modules/B/public/index.ts` (Public API access).
+- [x] `npm run lint` **FAILS** if `src/shared` imports `src/modules/A` (Dependency Inversion violation).
 </acceptance_criteria>
 
 <output>

@@ -12,6 +12,8 @@ SOFTWARE ARCHITECT & PDA
 </dependent_tasks>
 
 <context>
+- **Task 01 Summary**: Successfully initialized the Frontend Modular Monolith skeleton. Path aliases (`@/modules`, `@/shared`, `@/main`) are configured and strict architectural boundaries are enforced via ESLint. Inter-module private imports are now forbidden, and `shared` is isolated.
+- **Task 02 Summary**: Established the UI Foundation. Configured Styling Engine (Tailwind CSS) and implemented the Design System kernel in `src/shared/ui` with the `cn` utility and a polymorphic `Button` primitive (using CVA and Radix Slot).
 - We are replacing ad-hoc `fetch`/`useEffect` with a **centralized, cache-first** strategy.
 - **Server State** (API Data) belongs to TanStack Query.
 - **HTTP Transport** belongs to a dedicated Adapter (Axios/Fetch Wrapper) to handle global concerns like Auth Tokens and Error Logging.
@@ -57,14 +59,17 @@ Detailed Infrastructure implementation.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `apiClient` instance is configured with BaseURL.
-- [ ] Global interceptors are in place (Console log them for now is fine to verify).
-- [ ] `queryClient` is exported with defined default options (staleTime verified).
-- [ ] `QueryProvider` wrapper component exists.
+- [x] `apiClient` instance is configured with BaseURL.
+- [x] Global interceptors are in place (401 Redirect implemented).
+- [x] `queryClient` is exported with defined default options (staleTime verified).
+- [x] `QueryProvider` wrapper component exists.
+- [x] Tests are located in `app/frontend/tests/` mirroring `src/`.
 </acceptance_criteria>
 
 <output>
-1. **Summary**: Implemented the backbone for Communication (Http) and Caching (Query).
-2. **Decisions**: Separated Http (Axios) from State (Query) to allow swapping transport layer if needed (DIP).
+1. **Summary**: Implemented the backbone for Communication (Http) and Caching (Query). 
+2. **Decisions**: 
+    - Implemented `AxiosHttpClient` class wrapping Axios to enforce Clean Architecture and DIP.
+    - Standardized test location at `app/frontend/tests/` mirroring the `src/` directory.
 3. **Manual Test Guide**: Import `apiClient` and inspect `defaults.baseURL`.
 </output>

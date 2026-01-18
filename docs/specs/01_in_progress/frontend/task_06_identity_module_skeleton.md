@@ -13,6 +13,11 @@ SOFTWARE ARCHITECT & PDA
 </dependent_tasks>
 
 <context>
+- **Task 01 Summary**: Established Modular Monolith skeleton and architectural boundaries.
+- **Task 02 Summary**: Implemented UI Foundation with Tailwind and polymorphic Button primitive.
+- **Task 03 Summary**: Implemented Server State Infra (Axios Adapter as Class, TanStack Query). Established rule for mandatory Adapters for 3rd party libs and Test Mirroring.
+- **Task 04 Summary**: Configured Global Client Store with Zustand using the Slices and Adapter patterns. Implemented theme, sidebar, and persistent session state with 100% test coverage.
+- **Task 05 Summary**: Initialized the Type-Safe Routing Engine with TanStack Router.
 - **Identity Context**: Handles Authentication (Login) and User Management.
 - Needs to be a self-contained module with its own Routing, State, and UI.
 </context>
@@ -55,14 +60,14 @@ Establish the Identity Module Skeleton.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `LoginPage` component exists (Placeholder).
-- [ ] `identityRoute` is defined and includes `/login` path.
-- [ ] Public API exports the route object.
-- [ ] `npm run lint` passes (Boundaries respected).
+- [x] `LoginPage` component exists (Placeholder).
+- [x] `identityRoute` is defined and includes `/login` path.
+- [x] Public API exports the route object.
+- [x] `npm run lint` passes (Boundaries respected).
 </acceptance_criteria>
 
 <output>
-1. **Summary**: Created the Identity Bounded Context skeleton.
-2. **Decisions**: Routes defined inside the module to maintain encapsulation.
+1. **Summary**: Created the Identity Bounded Context skeleton using a factory pattern for routes to preserve architectural boundaries and module encapsulation.
+2. **Decisions**: Used `createIdentityRoutes(parentRoute)` factory to avoid `Identity -> Main` dependency violation.
 3. **Manual Test Guide**: N/A (Will be visible once Main integrates it in Task 08).
 </output>

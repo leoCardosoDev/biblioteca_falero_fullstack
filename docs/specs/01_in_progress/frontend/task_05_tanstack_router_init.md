@@ -12,6 +12,10 @@ SOFTWARE ARCHITECT & PDA
 </dependent_tasks>
 
 <context>
+- **Task 01 Summary**: Established Modular Monolith skeleton and architectural boundaries.
+- **Task 02 Summary**: Implemented UI Foundation with Tailwind and polymorphic Button primitive.
+- **Task 03 Summary**: Implemented Server State Infra (Axios Adapter as Class, TanStack Query). Established rule for mandatory Adapters for 3rd party libs and Test Mirroring.
+- **Task 04 Summary**: Configured Global Client Store with Zustand using the Slices and Adapter patterns. Implemented theme, sidebar, and persistent session state with 100% test coverage.
 - We are migrating to **TanStack Router** to enable 100% Type-Safe routing.
 - We will use **Code-Based Routing** (or Manual Route Definitions) to map strictly to our Modular Monolith structure (`src/modules/*`).
 - *Note: File-based routing is powerful but often assumes a flat `routes/` directory which conflicts with our strict `modules/` encapsulation.*
@@ -59,10 +63,10 @@ Initialize the Routing Engine.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] Router instance is created.
-- [ ] Root Route with Layout (Outlet) is defined.
-- [ ] TypeScript Module Augmentation is present (allowing `Link` to be typed later).
-- [ ] DevTools are integrated.
+- [x] Router instance is created.
+- [x] Root Route with Layout (Outlet) is defined.
+- [x] TypeScript Module Augmentation is present (allowing `Link` to be typed later).
+- [x] DevTools are integrated.
 </acceptance_criteria>
 
 <output>
