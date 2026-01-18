@@ -17,6 +17,6 @@
 >
 > Use the template:
 > `.agent/templates/TEMPLATE_TASK_SPEC.md`
-> save in `app/docs/specs/01_in_progress/backend/`
+> Generate and save the file in:`app/docs/specs/01_in_progress/backend/`
 > **Do not change or reinterpret PRD decisions.**
 > The goal is to define *how* to implement what has already been decided.
