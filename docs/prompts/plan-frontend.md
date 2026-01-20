@@ -1,6 +1,6 @@
 ## Implementation Plan from Spec
 
-> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_strict_arch_05_geography.md`** and produce a **detailed implementation plan**.
+> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_testing_01_infrastructure.md`** and produce a **detailed implementation plan**.
 >
 > **STEP 1 — Read mandatory documents:**
 >
