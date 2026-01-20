@@ -1,4 +1,4 @@
-# <role>
+# STATUS: COMPLETED
 # Product & Domain Analyst (PDA)
 # </role>
 
