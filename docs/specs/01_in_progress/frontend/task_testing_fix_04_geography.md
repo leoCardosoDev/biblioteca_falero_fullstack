@@ -58,8 +58,8 @@ We need to backfill tests to match `src/modules/geography`.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `tests/modules/geography` is populated with real tests (no more placeholders).
-- [ ] Tests pass Green.
+- [x] `tests/modules/geography` is populated with real tests (no more placeholders).
+- [x] Tests pass Green.
 </acceptance_criteria>
 
 <output>
