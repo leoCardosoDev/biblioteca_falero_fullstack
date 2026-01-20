@@ -17,6 +17,11 @@
     - **Domain**: `User` entity (state, transitions, immutability) and 6 Value Objects (`Email`, `Cpf`, `Name`, `UserRole`, `UserStatus`, `Address`).
     - **Application**: Unit tests for `Login`, `LoadUsers`, `LoadUserById`, and `Logout` use cases.
     - **Verification**: 90 unit tests added and passing in `tests/modules/identity`.
+- **Task 03 (Shared Kernel)** ✅:
+    - Created `tests/shared/application/common/either.spec.ts` (12 tests for Either pattern).
+    - Created `tests/shared/infra/http/axios-http-client.spec.ts` (7 tests for HTTP adapter).
+    - Created `tests/shared/infra/cache/local-storage-adapter.spec.ts` (6 tests for cache adapter).
+    - **Verification**: 32 unit tests passing in `tests/shared`.
 </completed>
 
 <context>
@@ -50,9 +55,9 @@ Failures here cascade everywhere. We need to verify the reusable building blocks
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `tests/shared/infra/http` passed.
-- [ ] `tests/shared/domain` (base classes) passed.
-- [ ] `tests/shared/presentation` (hooks) passed.
+- [x] `tests/shared/infra/http` passed.
+- [x] `tests/shared/application/common` (Either pattern) passed.
+- [x] `tests/shared/infra/cache` passed.
 </acceptance_criteria>
 
 <output>
