@@ -59,8 +59,8 @@ It likely involves complex data compilation or purely presentation logic.
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `tests/modules/dashboard` populated.
-- [ ] Correctly handles empty dashboard state.
+- [x] `tests/modules/dashboard` populated.
+- [x] Correctly handles empty dashboard state.
 </acceptance_criteria>
 
 <output>

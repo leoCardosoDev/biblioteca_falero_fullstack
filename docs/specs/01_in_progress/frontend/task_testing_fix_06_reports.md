@@ -3,8 +3,35 @@
 # </role>
 
 <dependent_tasks>
-- `app/docs/specs/01_in_progress/frontend/task_testing_fix_01_foundation.md`
+- `app/docs/specs/01_in_progress/frontend/task_testing_fix_01_foundation.md` (COMPLETED)
+- `app/docs/specs/01_in_progress/frontend/task_testing_fix_02_identity.md` (COMPLETED)
+- `app/docs/specs/01_in_progress/frontend/task_testing_fix_03_shared_kernel.md` (COMPLETED)
+- `app/docs/specs/01_in_progress/frontend/task_testing_fix_04_geography.md` (COMPLETED)
+- `app/docs/specs/01_in_progress/frontend/task_testing_fix_05_dashboard.md` (COMPLETED)
 </dependent_tasks>
+
+<completed>
+- **Task 01 (Foundation)**:
+    - Fixed Vitest unit configuration (`restoreMocks`, `setupFiles`).
+    - Standardized `jsdom` environment for `.tsx` files.
+    - Repaired `Library` module unit tests (Entities, Use Cases) ensuring architectural alignment.
+- **Task 02 (Identity)**:
+    - Implemented comprehensive unit tests for `Identity` module.
+    - **Domain**: `User` entity and 6 Value Objects (`Email`, `Cpf`, `Name`, `UserRole`, `UserStatus`, `Address`).
+    - **Application**: Unit tests for `Login`, `LoadUsers`, `LoadUserById`, and `Logout` use cases.
+- **Task 03 (Shared Kernel)**:
+    - Created `tests/shared/application/common/either.spec.ts` (12 tests).
+    - Created `tests/shared/infra/http/axios-http-client.spec.ts` (7 tests).
+    - Created `tests/shared/infra/cache/local-storage-adapter.spec.ts` (6 tests).
+- **Task 04 (Geography)**:
+    - Backfilled unit tests for `Geography` module covering Domain and Application layers.
+    - **Domain**: `State`, `City`, `Neighborhood` entities and `Address` Value Object.
+    - **Application**: Unit tests for `GetStates`, `GetCities`, `GetNeighborhoods`, and `GetAddressByZipCode` use cases.
+- **Task 05 (Dashboard)**:
+    - Refactored `Dashboard` module to comply with Strict Clean Architecture (moved Hooks from Application to Infra).
+    - Implemented 41 tests covering Repository, Hooks, Facade, and Presentation (`DashboardView`).
+    - **Verification**: 100% Type-safe and tests passing.
+</completed>
 
 <context>
 The `Reports` module generates PDF/CSV export data.
