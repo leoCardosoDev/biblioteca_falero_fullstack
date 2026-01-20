@@ -8,6 +8,7 @@
 > * Organize them by dependency impact
 > * Define a safe execution order
 > * Identify potential **breaking change** risks
+> * **Constraint**: Verify that your task breakdown respects `modular-ddd-clean-arch.md`. Do not group incompatible layers (e.g. Domain + Infra) in atomic steps if it risks pollution.
 >
 > Each task must:
 >

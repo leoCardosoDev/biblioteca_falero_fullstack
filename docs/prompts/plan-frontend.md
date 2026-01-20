@@ -1,9 +1,10 @@
 ## Implementation Plan from Spec
 
-> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_08_main_entry_migration.md`** and produce a **detailed implementation plan**.
+> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_strict_arch_05_geography.md`** and produce a **detailed implementation plan**.
 >
 > **STEP 1 — Read mandatory documents:**
 >
+> * `modular-ddd-clean-arch.md` (**THE ARCHITECTURAL CONTRACT**)
 > * `app/docs/ai/guardrail.prompt.md` (enforcement rules)
 > * `.agent/standards/STANDARD_GENERAL.md`
 > * `.agent/standards/STANDARD_FRONTEND.md`

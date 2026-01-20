@@ -3,7 +3,8 @@
 > **Before any analysis, planning, or implementation:**
 >
 > 1. Read and internalize `app/docs/ai/guardrail.prompt.md`
-> 2. Confirm you understand the pre-implementation checklist
+> 2. Read and internalize **`modular-ddd-clean-arch.md`** (The Architectural Contract)
+> 3. Confirm you understand the pre-implementation checklist
 > 3. Identify which modules will be affected by this work
 > 4. Read the relevant `app/docs/modules/*.module.md` for affected modules
 > 5. Read the relevant `app/docs/domain/*.rules.md` for affected aggregates

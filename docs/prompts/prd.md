@@ -1,6 +1,6 @@
 ## **PRD Creation**
 
-> Analyze the **app/backend** project and evaluate its compliance with the **ADRs** located at `app/docs/adr`.
+> Analyze the **app/backend** project and evaluate its compliance with **`modular-ddd-clean-arch.md`** and the **ADRs** located at `app/docs/adr`.
 >
 > Identify architectural divergences, implicit decisions, technical risks, and non-compliance points.
 >
@@ -14,6 +14,6 @@
 >
 > Generate **only** a **PRD** using the template:
 > `.agent/templates/TEMPLATE_PRD.md`
-> save in `app/docs/prd`
+> Generate and save the file in: `app/docs/prd`
 > **Do not generate task specs.**
 > The goal is to define *what* must be changed and *why*, consolidating architectural decisions.

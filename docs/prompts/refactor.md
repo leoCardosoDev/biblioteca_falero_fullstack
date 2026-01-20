@@ -7,7 +7,8 @@
 > **Instructions**:
 >
 > 1. Read **`app/docs/ai/refactor-patterns.prompt.md`** to assume the Refactoring Engine persona.
-> 2. Read **`.agent/standards/STANDARD_REFACTORING.md`** to load valid rules.
+> 2. Read **`modular-ddd-clean-arch.md`** to verify architectural boundaries.
+> 3. Read **`.agent/standards/STANDARD_REFACTORING.md`** to load valid rules.
 >
 > **Execute**:
 >
@@ -20,4 +21,4 @@
 >
 > **Constraint**:
 > - strictly preserve behavior.
-> - verify 100% compliance with `STANDARD_BACKEND.md`.
+> - verify 100% compliance with `modular-ddd-clean-arch.md` and `STANDARD_BACKEND.md`.

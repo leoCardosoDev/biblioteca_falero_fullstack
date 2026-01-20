@@ -39,6 +39,7 @@ Este documento define o **fluxo de execução completo** para desenvolvimento ne
 
 | Tipo | Localização | Propósito |
 |------|-------------|-----------|
+| **Architectural Contract** | `modular-ddd-clean-arch.md` | **IMMUTABLE LAW** |
 | **Guardrail** | `app/docs/ai/guardrail.prompt.md` | Regras de enforcement |
 | **Standards** | `.agent/standards/*.md` | Padrões de código |
 | **ADRs** | `app/docs/adr/*.md` | Decisões arquiteturais |

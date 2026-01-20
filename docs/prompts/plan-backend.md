@@ -4,6 +4,7 @@
 >
 > **STEP 1 — Read mandatory documents:**
 >
+> * `modular-ddd-clean-arch.md` (**THE ARCHITECTURAL CONTRACT**)
 > * `app/docs/ai/guardrail.prompt.md` (enforcement rules)
 > * `.agent/standards/STANDARD_GENERAL.md`
 > * `.agent/standards/STANDARD_BACKEND.md`

@@ -7,7 +7,8 @@
 
 ## MANDATORY INPUTS
 You MUST read and obey:
-1. `.agent/standards/STANDARD_REFACTORING.md` (The Rules)
+1. `modular-ddd-clean-arch.md` (The Immutable Contract)
+2. `.agent/standards/STANDARD_REFACTORING.md` (The Rules)
 2. `.agent/standards/STANDARD_BACKEND.md` (The Architecture)
 3. `.agent/standards/STANDARD_GENERAL.md` (The Basics)
 4. `app/docs/ai/guardrail.prompt.md` (The Guardrail)

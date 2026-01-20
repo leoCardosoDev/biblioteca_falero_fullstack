@@ -9,6 +9,9 @@
 
 You MUST read and obey the following documents before any implementation:
 
+### Constants (The "Constituion")
+- `modular-ddd-clean-arch.md` (The Unified Architectural Contract)
+
 ### Standards (Authority on *how* to code)
 - `.agent/standards/STANDARD_GENERAL.md`
 - `.agent/standards/STANDARD_BACKEND.md`
@@ -64,6 +67,7 @@ You MUST:
 Before writing ANY code:
 
 - [ ] Am I on a feature branch?
+- [ ] Did I read `modular-ddd-clean-arch.md` and verify "The Golden Triangle" compliance?
 - [ ] Did I read the relevant spec in `app/docs/specs/`?
 - [ ] Did I read the module contract for affected modules?
 - [ ] Did I read the domain rules for affected entities?
