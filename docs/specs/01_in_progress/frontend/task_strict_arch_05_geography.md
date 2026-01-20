@@ -8,10 +8,19 @@ Senior Frontend Engineer
 
 <dependent_tasks>
 - `app/docs/specs/01_in_progress/frontend/task_strict_arch_01_shared.md`
+- `app/docs/specs/01_in_progress/frontend/task_strict_arch_02_identity.md`
+- `app/docs/specs/01_in_progress/frontend/task_strict_arch_03_library.md`
+- `app/docs/specs/01_in_progress/frontend/task_strict_arch_04_reports.md`
 </dependent_tasks>
 
 <context>
 `Geography` module (Cities, States) is a simple CRUD/Lookup module but must follow the same strict rules.
+
+**Summary of Previous Work:**
+1. **Task 1 (Shared)**: Strictly layered foundation; `react-router-dom` replaced by `TanStack Router`; `shared/application` purified.
+2. **Task 2 (Identity)**: Strictly decoupled module; Application layer purified (no `zustand`/`react-query`); state and hooks moved to `infra`.
+3. **Task 3 (Library)**: Strictly layered module; Application layer purified (pure UseCases); Query Adapters in Infra; Presentation wired.
+4. **Task 4 (Reports)**: Decoupled module; Application layer purified (pure UseCases/Protocols); HttpReportsRepository and Query Adapters in Infra; Presentation wired.
 </context>
 
 <scope>

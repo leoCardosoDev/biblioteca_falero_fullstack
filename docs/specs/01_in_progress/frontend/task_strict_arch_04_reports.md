@@ -57,9 +57,9 @@ The `Reports` module likely involves data fetching and visualization. Strictly d
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] Architecture: `reports/application` pure TS.
-- [ ] Implementation: Data fetching is abstracted.
-- [ ] Feature: Reports visible and correct.
+- [x] Architecture: `reports/application` pure TS.
+- [x] Implementation: Data fetching is abstracted.
+- [x] Feature: Reports visible and correct.
 </acceptance_criteria>
 
 <output>
