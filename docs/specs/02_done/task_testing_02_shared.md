@@ -45,10 +45,10 @@ The `tests/shared` directory currently contains invalid structures (e.g., `tests
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `tests/shared` contains ONLY: `domain`, `application`, `infra`, `presentation` (plus maybe `test-utils` if absolutely needed, but prefer `src/shared/infra/test-utils`).
-- [ ] No `tests/shared/store` exists.
-- [ ] Existing shared tests pass after move.
-- [ ] Structure matches `src/shared`.
+- [x] `tests/shared` contains ONLY: `domain`, `application`, `infra`, `presentation` (plus maybe `test-utils` if absolutely needed, but prefer `src/shared/infra/test-utils`).
+- [x] No `tests/shared/store` exists.
+- [x] Existing shared tests pass after move.
+- [x] Structure matches `src/shared`.
 </acceptance_criteria>
 
 <output>

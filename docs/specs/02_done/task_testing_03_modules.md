@@ -7,6 +7,20 @@
 - `app/docs/specs/01_in_progress/frontend/task_testing_02_shared.md`
 </dependent_tasks>
 
+<summary_completed_tasks>
+### Task 01: Testing Infrastructure
+- **Playwright Initialized**: Configured in `app/frontend/playwright.config.ts`. Added basic sanity test.
+- **Vitest Separation**: Created `vitest.unit.config.ts` (node) and `vitest.integration.config.ts` (jsdom).
+- **Scripts**: Added `test:unit`, `test:integration`, `test:e2e`, and `test:all`.
+- **Coverage**: Refined `vitest.config.ts` for full visibility.
+
+### Task 02: Shared Module Tests
+- **Structural Realignment**: `tests/shared` now strictly mirrors `src/shared` layers (`domain`, `application`, `infra`, `presentation`).
+- **Relocation**: Moved store tests from `tests/shared/store` to `tests/shared/infra/store`.
+- **Environment Compliance**: Renamed to `*.test.ts` where DOM is required (e.g., `useAppStore`).
+- **Clean Slate**: Deleted invalid `tests/shared/store` directory and scaffolded empty layers with `.gitkeep`.
+</summary_completed_tasks>
+
 <context>
 Several modules present in `src/modules` (`geography`, `reports`, `dashboard`) are completely missing from `tests/modules`. This leads to zero coverage visibility for these features. We need to establish the physical testing structure for them.
 </context>
@@ -38,17 +52,20 @@ Several modules present in `src/modules` (`geography`, `reports`, `dashboard`) a
 </standards_compliance>
 
 <acceptance_criteria>
-- [ ] `tests/modules/geography` exists with 4 layers.
-- [ ] `tests/modules/reports` exists with 4 layers.
-- [ ] `tests/modules/dashboard` exists with 4 layers.
-- [ ] At least one placeholder test exists per new module.
-- [ ] `npm run test:unit` runs these placeholders (successfully or skipped).
+- [x] `tests/modules/geography` exists with 4 layers.
+- [x] `tests/modules/reports` exists with 4 layers.
+- [x] `tests/modules/dashboard` exists with 4 layers.
+- [x] At least one placeholder test exists per new module.
+- [x] `npm run test:unit` runs these placeholders (successfully or skipped).
 </acceptance_criteria>
 
 <output>
-1. **Summary**: Created test directory shells for missing modules.
-2. **Decisions**: Used placeholders to enforce structure before implementation.
-3. **Manual Test Guide**: Run `ls -R tests/modules` and verify structure.
+1. **Summary**: Successfully established the physical testing structure for missing modules.
+   - Created `tests/modules/{geography,reports,dashboard}` mirroring `src/modules`.
+   - Each module contains the 4 mandatory layers (`domain`, `application`, `infra`, `presentation`) with `.gitkeep` files.
+   - Added placeholder tests using `it.todo()` to ensure visibility in test reports without providing false confidence.
+2. **Decisions**: Used mirroring to maintain strict architectural parity between source and tests.
+3. **Verification**: Confirmed via `ls -R` and `npm run test:unit` (3 todo/skipped tests visible).
 </output>
 
 <technical_constraints>

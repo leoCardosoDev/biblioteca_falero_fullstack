@@ -26,6 +26,7 @@
 > **STEP 4 — Output must include:**
 >
 > * A structured implementation plan (step-by-step)
+> * **MANDATORY**: A summary of the fundamental points from the documents read in **STEP 1**
 > * Explicit references to the applied standards and rules
 > * A **final delivery checklist** containing **only mandatory items**
 >

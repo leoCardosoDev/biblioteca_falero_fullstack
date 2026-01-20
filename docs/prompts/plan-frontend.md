@@ -1,6 +1,6 @@
 ## Implementation Plan from Spec
 
-> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_testing_01_infrastructure.md`** and produce a **detailed implementation plan**.
+> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_testing_fix_02_identity.md`** and produce a **detailed implementation plan**.
 >
 > **STEP 1 — Read mandatory documents:**
 >
@@ -27,6 +27,7 @@
 > **STEP 4 — Output must include:**
 >
 > * A structured implementation plan (step-by-step)
+> * **MANDATORY**: A summary of the fundamental points from the documents read in **STEP 1**
 > * Explicit references to the applied standards and rules
 > * A **final delivery checklist** containing **only mandatory items**
 >
