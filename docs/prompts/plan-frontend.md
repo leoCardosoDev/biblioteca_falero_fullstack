@@ -1,6 +1,6 @@
 ## Implementation Plan from Spec
 
-> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_testing_fix_06_reports.md`** and produce a **detailed implementation plan**.
+> Analyze the specification **`app/docs/specs/01_in_progress/frontend/task_testing_fix_07_presentation_migration.md`** and produce a **detailed implementation plan**.
 >
 > **STEP 1 — Read mandatory documents:**
 >
